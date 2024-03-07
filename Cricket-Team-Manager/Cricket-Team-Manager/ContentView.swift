@@ -19,7 +19,7 @@ struct ContentView: View {
                 case .login:
                     LandingView()
                 case .newUser:
-                    OnboardingTutorialView()
+                    CreateAccountView()
                 case .home:
                     Text("Tabbar")
 //                    TabbarView()
@@ -30,9 +30,6 @@ struct ContentView: View {
             }
             .navigationDestination(isPresented: $onboardingVM.isPresentSignUp) {
                 SignUpView()
-            }
-            .navigationDestination(isPresented: $onboardingVM.isPresentCreateAccount) {
-                CreateAccountView()
             }
         }
         .environmentObject(onboardingVM)

@@ -113,24 +113,29 @@ struct CreateAccountView: View {
     
     func CareerSection() -> some View {
         Section("Career Info") {
-            
-//            Picker("Cricketer Type", selection: $onboardingVM.user.type) {
-//                ForEach(CricketerType.allCases, id: \.self) { type in
-//                    //                            Text(CricketerType.allCases[index].rawValue)
-//                    //                                .tag(index)
-//                    Text(type.rawValue)
-//                }
-//            }
-            
-//            Picker("Select International Team", selection: $onboardingVM.user.intTeamID) {
-//                ForEach(Constants.internationTeams) {
-//                    team in
-//                    Text(team.name)
-//                        .tag(team.teamID)
-//                }
-//            }
-//            .frame(height: 50)
-
+            Picker("Cricketer Type", selection: $onboardingVM.user.type) {
+                ForEach(CricketerType.allCases, id: \.self) { type in
+                    Text(type.rawValue)
+                }
+            }
+            if onboardingVM.user.type == .allRounder {
+                BowlerSelectionView()
+                BatsmanSelectionView()
+            }
+            else if onboardingVM.user.type == .bowler {
+                BowlerSelectionView()
+            }
+            else if onboardingVM.user.type == .batsman {
+                BatsmanSelectionView()
+            }
+            Picker("Select International Team", selection: $onboardingVM.user.intTeamID) {
+                ForEach(Constants.internationalTeams) {
+                    team in
+                    Text(team.name)
+                        .tag(team.teamID)
+                }
+            }
+            .frame(height: 50)
             
             DisclosureGroup {
                 ForEach(0 ..< Constants.domesticTeams.count, id: \.self) { index in
@@ -144,14 +149,10 @@ struct CreateAccountView: View {
                         }
                     } label: {
                         HStack {
-
                             Text("\(index + 1).")
-
                             Text(domestic.name)
                                 .foregroundStyle(.black)
-
                             Spacer()
-
                             if onboardingVM.user.domesticTeamIDs.contains(domestic.teamID) {
                                 Image(systemName: "checkmark.circle")
                             }
@@ -164,12 +165,24 @@ struct CreateAccountView: View {
                     .bold()
             }
         }
-
+        
     }
     
     func BowlerSelectionView() -> some View {
-        ForEach(BowlerType.allCases, id: \.self) { type in
-            
+        Picker("Select Bowling Style", selection: $onboardingVM.user.bowler) {
+            ForEach(BowlerType.allCases, id: \.self) { type in
+                Text(type.rawValue)
+                    .tag(type.rawValue)
+            }
+        }
+    }
+    
+    func BatsmanSelectionView() -> some View {
+        Picker("Select Batting Style", selection: $onboardingVM.user.batsman) {
+            ForEach(BatsmanType.allCases, id: \.self) { type in
+                Text(type.rawValue)
+//                    .tag(type.hashValue)
+            }
         }
     }
 }

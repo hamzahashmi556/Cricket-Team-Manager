@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     
-    static let internationTeams: [Team] = [
+    static let internationalTeams: [Team] = [
         .init(teamID: "Int-IND", name: "INDIA", imageName: ":flag-in:", type: .international),
         .init(teamID: "Int-AUS", name: "AUSTRALIA", imageName: ":flag-au:", type: .international),
         .init(teamID: "Int-SA", name: "SOUTH AFRICA", imageName: ":flag-za:", type: .international),

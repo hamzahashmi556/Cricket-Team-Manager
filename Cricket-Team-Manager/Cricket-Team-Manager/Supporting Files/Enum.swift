@@ -38,11 +38,13 @@ enum CricketerType: String, Codable, CaseIterable {
 }
 
 enum BatsmanType: String, Codable, CaseIterable {
+    case none
     case left = "Left-Arm Batsman"
     case righ = "Right-Arm Batsman"
 }
 
 enum BowlerType: String, Codable, CaseIterable {
+    case none
     case rightFast = "Right-Arm Fast Bowler"
     case leftFast = "Left-Arm Fast Bowler"
     case rightMedium = "Right-Arm Medium Fast Bowler"

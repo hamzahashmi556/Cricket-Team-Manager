@@ -94,13 +94,13 @@ struct LoginView: View {
             }
             .padding()
             .padding()
-            .alert(isPresented: $onboardingVM.showError) {
-                Alert(title: Text("Error"), message: Text(onboardingVM.errorMessage), dismissButton: .default(Text("OK")))
-            }
             
             if onboardingVM.isLoading {
                 ProgressView("Loading...")
             }
+        }
+        .alert(onboardingVM.errorMessage, isPresented: $onboardingVM.showError) {
+            
         }
         .navigationTitle("Login")
         .navigationBarTitleDisplayMode(.inline)

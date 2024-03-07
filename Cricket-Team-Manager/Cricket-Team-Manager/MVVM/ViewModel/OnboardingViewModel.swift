@@ -17,7 +17,7 @@ final class OnboardingViewModel: ObservableObject {
     
     @Published var isPresentLogin = false
     @Published var isPresentSignUp = false
-    @Published var isPresentCreateAccount = false
+//    @Published var isPresentCreateAccount = false
     
     
     @Published var errorMessage = ""
@@ -27,9 +27,10 @@ final class OnboardingViewModel: ObservableObject {
     @Published var user = AppUser()
     
     init() {
-        self.addAuthenticationListener()
+        try! Auth.auth().signOut()
+        //self.addAuthenticationListener()
     }
-    
+    /*
     private func addAuthenticationListener() {
         Auth.auth().addStateDidChangeListener { auth, user in
             
@@ -42,6 +43,7 @@ final class OnboardingViewModel: ObservableObject {
             
         }
     }
+     */
     
     func loginUser(email: String, password: String) {
         
@@ -66,6 +68,9 @@ final class OnboardingViewModel: ObservableObject {
             do {
                 try await Auth.auth().signIn(withEmail: email, password: password)
                 self.isLoading = false
+                withAnimation {
+                    self.userState = .home
+                }
             }
             catch {
                 self.isLoading = false
@@ -93,7 +98,7 @@ final class OnboardingViewModel: ObservableObject {
         
         self.isLoading = true
         
-        Task {
+        Task { @MainActor in
             do {
                 
                 // 1. Authenticate
@@ -104,7 +109,9 @@ final class OnboardingViewModel: ObservableObject {
                 FirestoreManager.shared.updateUser(user: user)
                 
                 self.isLoading = false
-                self.isPresentCreateAccount = true
+                withAnimation {
+                    self.userState = .newUser
+                }
             }
             catch {
                 self.present(error: error.localizedDescription)
@@ -132,12 +139,20 @@ final class OnboardingViewModel: ObservableObject {
         
         self.isLoading = true
         
-        Task {
+        Task { @MainActor in
             do {
                 // 2. Upload Picture
                 var downloadURL: String? = nil
                 if let image = selectedImage {
                     downloadURL = try await StorageManager.shared.uploadImage(image: image).absoluteString
+                }
+                
+                user.imageURL = downloadURL
+                
+                FirestoreManager.shared.updateUser(user: user)
+                self.isLoading = false
+                withAnimation {
+                    self.userState = .home
                 }
             }
             catch {

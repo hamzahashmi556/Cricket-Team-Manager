@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CreateTeamView: View {
     
+    @EnvironmentObject var onboardingVM: OnboardingViewModel
+    
     @State var teamName : String = ""
     @State var selectedImage: UIImage? = nil
     @State var domesticteamName: String = ""
@@ -79,6 +81,9 @@ struct CreateTeamView: View {
                     .padding(.vertical)
                 }
             }
+            
+        }
+        .alert(onboardingVM.errorMessage, isPresented: $onboardingVM.showError) {
             
         }
         .sheet(isPresented: $isPresentImagePicker) {
