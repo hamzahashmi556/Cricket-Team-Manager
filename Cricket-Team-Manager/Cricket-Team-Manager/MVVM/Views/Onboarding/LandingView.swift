@@ -55,9 +55,8 @@ struct LandingView: View {
                 
                 ZStack {
                     
-                    Color.accentColor
-                        .frame(width: showSplash ? .width() : imageSize,
-                               height: showSplash ? .height() : imageSize)
+//                        .frame(width: showSplash ? .width() : imageSize,
+//                               height: showSplash ? .height() : imageSize)
                     
                     Image(.logo)
                         .resizable()
