@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileView: View {
     
@@ -60,7 +61,9 @@ struct ProfileView: View {
                     //.listRowBackground(Color.white)
                     //.listStyle(PlainListStyle())
                     //.background(Color.white)
-                   
+                    Button("Logout") {
+                      try! Auth.auth().signOut()
+                    }
                 }
                 
             }
