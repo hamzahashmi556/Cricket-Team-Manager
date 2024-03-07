@@ -94,5 +94,5 @@ struct CreateTeamView: View {
 }
 
 #Preview {
-    CreateTeamView()
+    CreateTeamView().environmentObject(OnboardingViewModel())
 }
