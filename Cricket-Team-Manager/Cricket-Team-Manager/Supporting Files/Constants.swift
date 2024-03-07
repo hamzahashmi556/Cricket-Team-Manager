@@ -21,4 +21,13 @@ struct Constants {
         .init(teamID: "Int-AFG", name: "AFGHANISTAN", imageName: ":flag-af:", type: .international),
         .init(teamID: "Int-IRE", name: "IRELAND", imageName: ":flag-ie:", type: .international),
       ]
+    
+    static let domesticTeams: [Team] = [
+        .init(teamID: "PSL-KK", name: "Karachi Kings", imageName: "", type: .domestic),
+        .init(teamID: "PSL-LQ", name: "Lahore Qalandars", imageName: "", type: .domestic),
+        .init(teamID: "PSL-QG", name: "Quetta Gladiators", imageName: "", type: .domestic),
+        .init(teamID: "PSL-PZ", name: "Peshawar Zalmi", imageName: "", type: .domestic),
+        .init(teamID: "PSL-MS", name: "Multan Sultans", imageName: "", type: .domestic),
+        .init(teamID: "PSL-IU", name: "Islamabad United", imageName: "", type: .domestic)
+    ]
 }

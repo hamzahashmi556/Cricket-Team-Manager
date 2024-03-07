@@ -9,16 +9,21 @@ import Foundation
 
 struct AppUser: Codable {
     
-    var email: String
-    var imageURL: String?
-    var firstName: String
-    var lastName: String
-    var dateOfBirth: Date
-    var country : String
-    var type: CricketerType
-    var intCareerStart: Date
-    var intTeamID: String
-    var domesticTeamIDs: [String]
+    var firstName: String = ""
+    var lastName: String = ""
+    var city: String = ""
+    var country : String = ""
+    var dateOfBirth: Date = .now
+    
+    var email: String = ""
+    var imageURL: String? = nil
+    
+    
+    
+    var type: CricketerType = .none
+    var intCareerStart: Date = .now
+    var intTeamID: String = ""
+    var domesticTeamIDs: [String] = []
 }
 
 struct Team: Codable, Identifiable, Hashable {

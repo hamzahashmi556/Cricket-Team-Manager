@@ -19,7 +19,7 @@
 		5D8836162B999A4400E53E1D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8836072B999A4400E53E1D /* TextField.swift */; };
 		5D8836172B999A4400E53E1D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8836092B999A4400E53E1D /* LoginView.swift */; };
 		5D8836182B999A4400E53E1D /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360A2B999A4400E53E1D /* LandingView.swift */; };
-		5D8836192B999A4400E53E1D /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360B2B999A4400E53E1D /* CreateUserView.swift */; };
+		5D8836192B999A4400E53E1D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360B2B999A4400E53E1D /* SignUpView.swift */; };
 		5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */; };
 		5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88361B2B99A2DD00E53E1D /* Constants.swift */; };
 		AB74FB682B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74FB672B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift */; };
@@ -41,6 +41,7 @@
 		ABA2D1762B99958700535C75 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = ABA2D1752B99958700535C75 /* FirebaseStorage */; };
 		ABA2D19B2B99A7C200535C75 /* SelectSignUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */; };
 		ABA2D19D2B99A82E00535C75 /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */; };
+		ABA2D1A12B99B99900535C75 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D1A02B99B99900535C75 /* CreateAccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +57,7 @@
 		5D8836072B999A4400E53E1D /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		5D8836092B999A4400E53E1D /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5D88360A2B999A4400E53E1D /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
-		5D88360B2B999A4400E53E1D /* CreateUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
+		5D88360B2B999A4400E53E1D /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTutorialView.swift; sourceTree = "<group>"; };
 		5D88361B2B99A2DD00E53E1D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AB74FB642B9991D400E0BB2B /* Cricket-Team-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cricket-Team-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +74,7 @@
 		ABA2D1682B99944800535C75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSignUP.swift; sourceTree = "<group>"; };
 		ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
+		ABA2D1A02B99B99900535C75 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,12 +179,13 @@
 		5D8836082B999A4400E53E1D /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				5D8836092B999A4400E53E1D /* LoginView.swift */,
 				5D88360A2B999A4400E53E1D /* LandingView.swift */,
-				ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */,
-				5D88360B2B999A4400E53E1D /* CreateUserView.swift */,
+				5D8836092B999A4400E53E1D /* LoginView.swift */,
+				5D88360B2B999A4400E53E1D /* SignUpView.swift */,
+				ABA2D1A02B99B99900535C75 /* CreateAccountView.swift */,
 				ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */,
 				5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */,
+				ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -348,10 +351,11 @@
 				5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */,
 				5D88360D2B999A4400E53E1D /* OnboardingViewModel.swift in Sources */,
 				5D8836132B999A4400E53E1D /* ProfileView.swift in Sources */,
+				ABA2D1A12B99B99900535C75 /* CreateAccountView.swift in Sources */,
 				ABA2D1662B99939300535C75 /* Extension+String.swift in Sources */,
 				5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */,
 				5D8836122B999A4400E53E1D /* TabbarView.swift in Sources */,
-				5D8836192B999A4400E53E1D /* CreateUserView.swift in Sources */,
+				5D8836192B999A4400E53E1D /* SignUpView.swift in Sources */,
 				ABA2D1642B99939300535C75 /* FirestoreManager.swift in Sources */,
 				5D8836152B999A4400E53E1D /* AppButton.swift in Sources */,
 				ABA2D1652B99939300535C75 /* Extension+Numbers.swift in Sources */,

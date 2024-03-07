@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct SelectSignUP: View {
-    var body: some View {
-        List {
-            NavigationLink("Create New User") {
-                CreateUserView()
-            }
-            
-            NavigationLink("Create a New Team") {
-                CreateTeamView()
-            }
-        }
-    }
-}
-
-#Preview {
-    SelectSignUP()
-}
+//struct SelectSignUP: View {
+//    var body: some View {
+//        List {
+//            NavigationLink("Create New User") {
+//                CreateBioView()
+//            }
+//            
+//            NavigationLink("Create a New Team") {
+//                CreateTeamView()
+//            }
+//        }
+//    }
+//}
+//
+//#Preview {
+//    SelectSignUP()
+//}
