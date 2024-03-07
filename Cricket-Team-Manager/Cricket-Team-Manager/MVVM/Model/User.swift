@@ -21,7 +21,7 @@ struct AppUser: Codable {
     var domesticTeamIDs: [String]
 }
 
-struct Team: Codable {
+struct Team: Codable, Identifiable, Hashable {
     var id = UUID().uuidString
     var teamID: String
     var name: String
