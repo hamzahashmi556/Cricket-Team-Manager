@@ -11,80 +11,54 @@ struct LandingView: View {
     
     @EnvironmentObject var onboardingVM: OnboardingViewModel
     
-    @State private var imageSize: CGFloat = .width() / 1.5
-    
-    @State var showSplash = true
-    
+    let imageSize: CGFloat = .width() / 1.5
     
     var body: some View {
         
         ZStack {
-                              
-            if !showSplash {
-                VStack {
-                    
-                    Spacer()
-                    
-                    Button {
-                        self.onboardingVM.isPresentLogin.toggle()
-                    } label: {
-                        AppButton(title: "Login", textColor: .white)
-                    }
-                    .padding(.bottom)
-                    
-                    
-                    Button {
-                        self.onboardingVM.isPresentSignUp.toggle()
-                    } label: {
-                        AppButton(title: "Signup", textColor: .white)
-                    }
-                    .padding(.bottom)
-                }
-                .padding(.horizontal, 25)
-            }
-
             
             VStack {
                 
-                if !showSplash {
-                    Text("Welcome to\n Cricket Team Manager")
-                        .font(.title)
-                        .bold()
-                        .padding(.vertical)
-                }
+                Text("Welcome to Cricket Team Manager")
+                    .font(.title)
+                    .bold()
+
                 
                 ZStack {
-                    
-//                        .frame(width: showSplash ? .width() : imageSize,
-//                               height: showSplash ? .height() : imageSize)
-                    
                     Image(.logo)
                         .resizable()
                         .frame(width: imageSize, height: imageSize)
+                        .shadow(color: .white, radius: 1)
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .ignoresSafeArea()
+                .padding(.top)
                 
-                if !showSplash {
-                    Spacer()
+                
+                Spacer()
+                
+                NavigationLink {
+                   // self.onboardingVM.isPresentLogin.toggle()
+                    LoginView()
+                } label: {
+                    AppButton(title: "Login", textColor: .white)
                 }
+                
+                NavigationLink {
+                    SignUpView()
+                } label: {
+                    AppButton(title: "Signup", textColor: .white)
+                }
+                .padding(.bottom)
             }
+            .padding(.horizontal, 25)
         }
-        .toolbarTitleDisplayMode(.inlineLarge)
         .multilineTextAlignment(.center)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
-                withAnimation(.bouncy) {
-                    self.showSplash = false
-                    self.imageSize = .width() / 2
-                }
-            })
-        }
     }
 }
 
 #Preview {
-    NavigationStack {
-        LandingView()
+    NavigationView {
+        ContentView()
     }
+    .environmentObject(OnboardingViewModel())
 }

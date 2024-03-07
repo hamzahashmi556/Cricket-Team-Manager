@@ -15,11 +15,6 @@ final class OnboardingViewModel: ObservableObject {
     
     @Published var isLoading = false
     
-    @Published var isPresentLogin = false
-    @Published var isPresentSignUp = false
-//    @Published var isPresentCreateAccount = false
-    
-    
     @Published var errorMessage = ""
     @Published var showError = false
     
@@ -27,7 +22,6 @@ final class OnboardingViewModel: ObservableObject {
     @Published var user = AppUser()
     
     init() {
-        try! Auth.auth().signOut()
         //self.addAuthenticationListener()
     }
     /*
@@ -66,10 +60,15 @@ final class OnboardingViewModel: ObservableObject {
             
         Task { @MainActor in
             do {
-                try await Auth.auth().signIn(withEmail: email, password: password)
+                let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
+                
+                let user = try await FirestoreManager.shared.fetchUser(userID: authResult.user.uid)
+                
                 self.isLoading = false
+                
+                // 1. Show Home if Profile is Completed else show Create Profile View
                 withAnimation {
-                    self.userState = .home
+                    self.userState = user.isProfileCompleted ? .home : .newUser
                 }
             }
             catch {
@@ -79,7 +78,7 @@ final class OnboardingViewModel: ObservableObject {
         }
     }
     
-    func signUpUser(email: String, password: String) {
+    func signUpUser(email: String, password: String, firstName: String, lastName: String, selectedImage: UIImage? = nil) {
         
         guard !email.isEmpty else {
             self.present(error: "Please Enter Email")
@@ -108,7 +107,10 @@ final class OnboardingViewModel: ObservableObject {
                 user.email = email
                 FirestoreManager.shared.updateUser(user: user)
                 
+                // 3. Hide Loader
                 self.isLoading = false
+                
+                // 4. Go to Create Account
                 withAnimation {
                     self.userState = .newUser
                 }

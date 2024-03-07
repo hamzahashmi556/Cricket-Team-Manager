@@ -42,6 +42,7 @@
 		ABA2D19B2B99A7C200535C75 /* SelectSignUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */; };
 		ABA2D19D2B99A82E00535C75 /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */; };
 		ABA2D1A12B99B99900535C75 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D1A02B99B99900535C75 /* SignUpView.swift */; };
+		ABC5E05F2B99FD5300FBDE07 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSignUP.swift; sourceTree = "<group>"; };
 		ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
 		ABA2D1A02B99B99900535C75 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,11 +183,12 @@
 			children = (
 				5D88360A2B999A4400E53E1D /* LandingView.swift */,
 				5D8836092B999A4400E53E1D /* LoginView.swift */,
-				5D88360B2B999A4400E53E1D /* CreateAccountView.swift */,
 				ABA2D1A02B99B99900535C75 /* SignUpView.swift */,
+				5D88360B2B999A4400E53E1D /* CreateAccountView.swift */,
 				ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */,
 				5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */,
 				ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */,
+				ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				ABA2D19B2B99A7C200535C75 /* SelectSignUP.swift in Sources */,
 				ABA2D1632B99939300535C75 /* StorageManager.swift in Sources */,
 				ABA2D1672B99939300535C75 /* Enum.swift in Sources */,
+				ABC5E05F2B99FD5300FBDE07 /* ForgotPasswordView.swift in Sources */,
 				AB74FB6A2B9991D400E0BB2B /* ContentView.swift in Sources */,
 				5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */,
 				5D88360D2B999A4400E53E1D /* OnboardingViewModel.swift in Sources */,
@@ -508,6 +512,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,6 +547,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

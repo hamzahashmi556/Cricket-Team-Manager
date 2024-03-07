@@ -9,23 +9,29 @@ import Foundation
 
 struct AppUser: Codable {
     
+    // Basic Sign Up
     var firstName: String = ""
     var lastName: String = ""
+    var email: String = ""
+    var imageURL: String? = nil
+
+    // Bio
     var city: String = ""
     var country : String = ""
     var dateOfBirth: Date = .now
     
-    var email: String = ""
-    var imageURL: String? = nil
-    
-    
-    
+    // Career/Skills
     var type: CricketerType = .none
-    var intCareerStart: Date = .now
-    var intTeamID: String = ""
-    var domesticTeamIDs: [String] = []
     var batsman : BatsmanType = .none
     var bowler: BowlerType = .none
+
+    var intCareerStart: Date = .now
+    var intCareerEnd: Date = .now
+    // Joined Team
+    var intTeamID: String = ""
+    var domesticTeamIDs: [String] = []
+    
+    var isProfileCompleted = false
 }
 
 struct Team: Codable, Identifiable, Hashable {

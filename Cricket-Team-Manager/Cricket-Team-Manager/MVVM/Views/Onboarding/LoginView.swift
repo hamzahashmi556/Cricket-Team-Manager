@@ -47,19 +47,22 @@ struct LoginView: View {
                                     placeHolder: "Enter Password",
                                     isPasswordField: true,
                                     text: $password)
-                    
-                    
-                    HStack {
-                        Spacer()
-                        
-                        Button("Forgot Password") {
-                            self.onboardingVM.forgotPassword(email: email)
-                        }
-                        .padding(.trailing)
-                    }
-                    .padding(.vertical)
-                    
                 }
+
+                HStack {
+                    
+                    Spacer()
+                    
+                    NavigationLink {
+                        ForgotPasswordView()
+                    } label: {
+                        Text("Forgot Password")
+                            .padding(.top, 5)
+    //                        .padding(.trailing)
+                    }
+                }
+//                .padding(.vertical)
+
                 
                 Spacer()
                 
@@ -78,12 +81,12 @@ struct LoginView: View {
                         Text("Don't have an account,")
                         
                         Button(action: {
-                            if self.onboardingVM.isPresentSignUp {
-                                self.onboardingVM.isPresentLogin = false
-                            }
-                            else {
-                                self.onboardingVM.isPresentSignUp = true
-                            }
+//                            if self.onboardingVM.isPresentSignUp {
+//                                self.onboardingVM.isPresentLogin = false
+//                            }
+//                            else {
+//                                self.onboardingVM.isPresentSignUp = true
+//                            }
                         }, label: {
                             Text("sign up")
                                 .underline()
@@ -104,12 +107,12 @@ struct LoginView: View {
         }
         .navigationTitle("Login")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(.visible, for: .navigationBar)
+//        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 
 #Preview {
-    NavigationStack {
+    NavigationView {
         LoginView()
     }
     .environmentObject(OnboardingViewModel())

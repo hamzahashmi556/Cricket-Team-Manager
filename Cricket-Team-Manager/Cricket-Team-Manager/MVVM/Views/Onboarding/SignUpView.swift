@@ -11,9 +11,11 @@ struct SignUpView: View {
     
     @EnvironmentObject var onboardingVM: OnboardingViewModel
     
-//    @Binding var user: AppUser
-//    @Binding var selectedImage: UIImage?
+    @State private var selectedImage: UIImage? = nil
+    @State private var isPresentImagePicker = false
     
+    @State private var firstName = ""
+    @State private var lastName = ""
     @State private var email = ""
     @State private var password = ""
     
@@ -22,56 +24,70 @@ struct SignUpView: View {
     var body: some View {
         ZStack {
             
-            VStack {
+            List {
                 
-                Image(.logo)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: imageSize, height: imageSize)
-                    .clipShape(Circle())
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.top)
+                // Image Section
+                ImageView()
                 
                 VStack(spacing: 20) {
-                    HeaderTextField(header: "Email",
-                                    placeHolder: "Enter Email",
-                                    text: $email)
                     
-                    HeaderTextField(header: "Password",
-                                    placeHolder: "Enter Password",
-                                    isPasswordField: true,
-                                    text: $password)
+                    HeaderTextField(header: "First Name", placeHolder: "Enter First Name", text: $onboardingVM.user.firstName)
+                    
+                    HeaderTextField(header: "Last Name", placeHolder: "Enter Last Name", text: $onboardingVM.user.lastName)
+                    
+                    HeaderTextField(header: "Email", placeHolder: "Enter Email", text: $email)
+                    
+                    HeaderTextField(header: "Password", placeHolder: "Enter Password", isPasswordField: true, text: $password)
+                    
+                    Button {
+                        // Perform login action
+                        self.onboardingVM.signUpUser(email: email, password: password, firstName: firstName, lastName: lastName, selectedImage: selectedImage)
+                    } label: {
+                        AppButton(title: "Create Account", textColor: .white)
+                    }
+                    .padding(.top)
+                    
                 }
-                
-                Spacer()
-                
-                Button {
-                    // Perform login action
-                    self.onboardingVM.signUpUser(email: email, password: password)
-                } label: {
-                    AppButton(title: "Create Account", textColor: .white)
-                }
-                .padding(.vertical)
             }
-            .padding()
-            .padding()
             
             if onboardingVM.isLoading {
                 ProgressView("Signing Up ...")
             }
-            
         }
         .alert(onboardingVM.errorMessage, isPresented: $onboardingVM.showError) {
             
         }
         .navigationTitle("Sign Up")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(.visible, for: .navigationBar)
+        .sheet(isPresented: $isPresentImagePicker) {
+            ImagePicker(image: $selectedImage)
+        }
+    }
+    
+    func ImageView() -> some View {
+        Button(action: {
+            self.isPresentImagePicker.toggle()
+        }, label: {
+            if let selectedImage = selectedImage {
+                Image(uiImage: selectedImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: imageSize, height: imageSize)
+            }
+            else {
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: imageSize, height: imageSize)
+            }
+        })
+        .clipShape(Circle())
+        .foregroundStyle(.accent)
+        .frame(maxWidth: .infinity)
     }
 }
 
 #Preview {
-    NavigationStack {
+    NavigationView {
         SignUpView()
     }
     .environmentObject(OnboardingViewModel())

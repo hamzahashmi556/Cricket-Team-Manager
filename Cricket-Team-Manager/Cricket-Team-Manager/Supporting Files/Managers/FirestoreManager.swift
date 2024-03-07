@@ -32,6 +32,12 @@ final class FirestoreManager {
             print("Decoding Error user: \(error)")
         }
     }
+    
+    func fetchUser(userID: String) async throws -> AppUser {
+        let document = try await usersRef.document(userID).getDocument()
+        let user = try document.data(as: AppUser.self)
+        return user
+    }
     /*
     func addTeamsToFirestore() {
         

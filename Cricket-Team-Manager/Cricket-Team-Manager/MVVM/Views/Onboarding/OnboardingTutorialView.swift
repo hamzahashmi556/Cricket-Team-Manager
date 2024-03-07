@@ -73,8 +73,8 @@ struct OnboardingTutorialView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        OnboardingTutorialView()
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        OnboardingTutorialView()
+//    }
+//}
