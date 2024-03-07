@@ -24,6 +24,7 @@ struct CreateAccountView: View {
 
             List {
                 BasicInfoSection()
+                
                 CareerSection()
                 
                 Button(action: {
@@ -84,6 +85,10 @@ struct CreateAccountView: View {
                 BatsmanSelectionView()
             }
             
+            DatePicker("Career Start Date",
+                       selection: $onboardingVM.user.intCareerStart,
+                       displayedComponents: .date)
+            /*
             Picker("Select International Team", selection: $onboardingVM.user.intTeamID) {
                 ForEach(Constants.internationalTeams) {
                     team in
@@ -120,12 +125,13 @@ struct CreateAccountView: View {
                 Text("Select Domestic Teams")
                     .bold()
             }
+            */
         }
         
     }
     
     func BowlerSelectionView() -> some View {
-        Picker("Select Bowling Style", selection: $onboardingVM.user.bowler) {
+        Picker("Bowling Style", selection: $onboardingVM.user.bowler) {
             ForEach(BowlerType.allCases, id: \.self) { type in
                 Text(type.rawValue)
                     .tag(type.rawValue)
@@ -134,7 +140,7 @@ struct CreateAccountView: View {
     }
     
     func BatsmanSelectionView() -> some View {
-        Picker("Select Batting Style", selection: $onboardingVM.user.batsman) {
+        Picker("Batting Style", selection: $onboardingVM.user.batsman) {
             ForEach(BatsmanType.allCases, id: \.self) { type in
                 Text(type.rawValue)
             }

@@ -36,18 +36,18 @@ struct SignUpView: View {
                     HeaderTextField(header: "Last Name", placeHolder: "Enter Last Name", text: $onboardingVM.user.lastName)
                     
                     HeaderTextField(header: "Email", placeHolder: "Enter Email", text: $email)
+                        .keyboardType(.emailAddress)
                     
                     HeaderTextField(header: "Password", placeHolder: "Enter Password", isPasswordField: true, text: $password)
-                    
-                    Button {
-                        // Perform login action
-                        self.onboardingVM.signUpUser(email: email, password: password, firstName: firstName, lastName: lastName, selectedImage: selectedImage)
-                    } label: {
-                        AppButton(title: "Create Account", textColor: .white)
-                    }
-                    .padding(.top)
-                    
                 }
+                
+                Button {
+                    // Perform login action
+                    self.onboardingVM.signUpUser(email: email, password: password, firstName: firstName, lastName: lastName, selectedImage: selectedImage)
+                } label: {
+                    AppButton(title: "Sign Up", textColor: .white)
+                }
+                .padding(.top)
             }
             
             if onboardingVM.isLoading {

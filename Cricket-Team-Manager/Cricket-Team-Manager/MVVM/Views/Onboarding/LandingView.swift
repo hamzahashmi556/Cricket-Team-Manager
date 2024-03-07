@@ -52,6 +52,9 @@ struct LandingView: View {
             }
             .padding(.horizontal, 25)
         }
+        .alert(onboardingVM.errorMessage, isPresented: $onboardingVM.showError, actions: {
+            
+        })
         .multilineTextAlignment(.center)
     }
 }

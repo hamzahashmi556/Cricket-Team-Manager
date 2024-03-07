@@ -36,6 +36,10 @@ final class OnboardingViewModel: ObservableObject {
                 let user = try await FirestoreManager.shared.fetchUser(userID: uid)
                 self.userState = user.isProfileCompleted ? .home : .newUser
             }
+            catch {
+                print(#function, error)
+                self.present(error: error.localizedDescription)
+            }
         }
     }
     /*
@@ -143,18 +147,13 @@ final class OnboardingViewModel: ObservableObject {
     
     func createAccount() {
         
-        guard !user.firstName.isEmpty else {
-            self.present(error: "First Name can not be empty")
-            return
-        }
-        
-        guard !user.lastName.isEmpty else {
-            self.present(error: "Last Name can not be empty")
+        guard !user.city.isEmpty else {
+            self.present(error: "Please Enter City")
             return
         }
         
         guard !user.country.isEmpty else {
-            self.present(error: "Country can not be empty")
+            self.present(error: "Please Enter Country")
             return
         }
         
