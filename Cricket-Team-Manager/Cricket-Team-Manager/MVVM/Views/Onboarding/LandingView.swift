@@ -11,7 +11,7 @@ struct LandingView: View {
     
     @EnvironmentObject var onboardingVM: OnboardingViewModel
     
-    @State private var imageSize: CGFloat = .width()
+    @State private var imageSize: CGFloat = .width() / 1.5
     
     @State var showSplash = true
     

@@ -31,6 +31,9 @@ struct ContentView: View {
             .navigationDestination(isPresented: $onboardingVM.isPresentSignUp) {
                 SignUpView()
             }
+            .navigationDestination(isPresented: $onboardingVM.isPresentCreateAccount) {
+                CreateAccountView()
+            }
         }
         .environmentObject(onboardingVM)
     }
