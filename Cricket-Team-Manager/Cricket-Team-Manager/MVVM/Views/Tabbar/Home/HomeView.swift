@@ -7,27 +7,60 @@
 
 import SwiftUI
 
-//struct HomeView: View {
-//    
-////    @StateObject var homeVM = HomeViewModel()
-//    
-//    @State var dates = Set<DateComponents>()
-//    
-//    var body: some View {
-//        
-//        List {
-//            Picker("Property Type", selection: $homeVM.searchType) {
-//                Text("Homes")
-//                    .tag(PropertyType.homes)
-//                
-//                Text("Plots")
-//                    .tag(PropertyType.plots)
-//            }
-//            .pickerStyle(.menu)
-//        }
-//    }
-//}
-//
-//#Preview {
-//    TabbarView()
-//}
+struct HomeView: View {
+    
+    @EnvironmentObject var homeVM: HomeViewModel
+    
+    @State private var isPresentOptions = false
+    
+    @State private var isPresentCreateTeam = false
+    
+    @State private var isPresentCreateLegue = false
+    
+    var body: some View {
+        ZStack {
+            List {
+                
+                Section("Your Teams") {
+                    
+                }
+                
+                Section("Other Teams") {
+                    
+                }
+                
+                Section("Leages") {
+                    
+                }
+            }
+            
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        self.isPresentOptions.toggle()
+                    }, label: {
+                        Circle()
+                            .frame(width: 50, height: 50)
+                            .padding(.trailing)
+                    })
+                }
+            }
+            .confirmationDialog("Add", isPresented: $isPresentOptions) {
+                Button("Create a New Team") {
+                    self.isPresentCreateTeam.toggle()
+                }
+                Button("Create a New League") {
+                    self.isPresentCreateTeam.toggle()
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    TabbarView()
+}

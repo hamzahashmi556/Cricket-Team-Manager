@@ -29,27 +29,17 @@ struct ContentView: View {
                     .padding(.top)
             }
             else {
-                NavigationView {
-                    ZStack {
-                        
-//                        if onboardingVM.userState == .login {
-//                            LandingView()
-//                        }
-//                        else {
-//                            
-//                        }
-                        switch onboardingVM.userState {
-                        case .login:
-                            LandingView()
-                        case .newUser:
-                            CreateAccountView()
-                        case .home:
-                            Button("Logout") {
-                                try! Auth.auth().signOut()
-                                onboardingVM.userState = .login
-                            }
-                        }
+                switch onboardingVM.userState {
+                case .login:
+                    NavigationView {
+                        LandingView()
                     }
+                case .newUser:
+                    NavigationView {
+                        CreateAccountView()
+                    }
+                case .home:
+                    TabbarView()
                 }
             }
         }

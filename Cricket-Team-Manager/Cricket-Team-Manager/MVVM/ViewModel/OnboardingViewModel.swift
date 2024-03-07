@@ -42,20 +42,6 @@ final class OnboardingViewModel: ObservableObject {
             }
         }
     }
-    /*
-    private func addAuthenticationListener() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            
-            guard let _ = Auth.auth().currentUser else {
-                self.userState = .login
-                return
-            }
-            
-            self.userState = .home
-            
-        }
-    }
-     */
     
     func loginUser(email: String, password: String) {
         
@@ -119,7 +105,7 @@ final class OnboardingViewModel: ObservableObject {
             do {
                 
                 // 1. Authenticate
-                try await Auth.auth().createUser(withEmail: email, password: password)
+                let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
                 
                 // 2. Upload Image
                 if let image = selectedImage {
@@ -127,6 +113,7 @@ final class OnboardingViewModel: ObservableObject {
                 }
                 
                 // 2. Create Database
+                user.uid = authResult.user.uid
                 user.email = email
                 try await FirestoreManager.shared.updateUser(user: user)
                 
@@ -161,8 +148,13 @@ final class OnboardingViewModel: ObservableObject {
         
         Task { @MainActor in
             do {
+                if let uid = Auth.auth().currentUser?.uid {
+                    user.uid = uid
+                }
                 try await FirestoreManager.shared.updateUser(user: user)
+                
                 self.isLoading = false
+                
                 withAnimation {
                     self.userState = .home
                 }
