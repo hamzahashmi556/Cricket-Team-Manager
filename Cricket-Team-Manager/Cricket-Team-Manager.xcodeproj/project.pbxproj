@@ -21,6 +21,7 @@
 		5D8836182B999A4400E53E1D /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360A2B999A4400E53E1D /* LandingView.swift */; };
 		5D8836192B999A4400E53E1D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360B2B999A4400E53E1D /* SignUpView.swift */; };
 		5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */; };
+		5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88361B2B99A2DD00E53E1D /* Constants.swift */; };
 		AB74FB682B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74FB672B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift */; };
 		AB74FB6A2B9991D400E0BB2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74FB692B9991D400E0BB2B /* ContentView.swift */; };
 		AB74FB6C2B9991D500E0BB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB74FB6B2B9991D500E0BB2B /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		5D88360A2B999A4400E53E1D /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		5D88360B2B999A4400E53E1D /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTutorialView.swift; sourceTree = "<group>"; };
+		5D88361B2B99A2DD00E53E1D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AB74FB642B9991D400E0BB2B /* Cricket-Team-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cricket-Team-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB74FB672B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cricket_Team_ManagerApp.swift; sourceTree = "<group>"; };
 		AB74FB692B9991D400E0BB2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				ABA2D15B2B99939300535C75 /* Managers */,
 				ABA2D15E2B99939300535C75 /* Extensions */,
 				ABA2D1612B99939300535C75 /* Enum.swift */,
+				5D88361B2B99A2DD00E53E1D /* Constants.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				ABA2D1632B99939300535C75 /* StorageManager.swift in Sources */,
 				ABA2D1672B99939300535C75 /* Enum.swift in Sources */,
 				AB74FB6A2B9991D400E0BB2B /* ContentView.swift in Sources */,
+				5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */,
 				5D88360D2B999A4400E53E1D /* OnboardingViewModel.swift in Sources */,
 				5D8836132B999A4400E53E1D /* ProfileView.swift in Sources */,
 				ABA2D1662B99939300535C75 /* Extension+String.swift in Sources */,

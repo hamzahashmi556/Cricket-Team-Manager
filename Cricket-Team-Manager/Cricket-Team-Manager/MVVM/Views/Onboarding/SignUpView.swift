@@ -16,6 +16,11 @@ struct SignUpView: View {
     @State var password = ""
     @State var firstName = ""
     @State var lastName = ""
+    @State var dateOfBirth: Date
+    @State var country : String
+    @State var intTeamID: String = ""
+    @State var type: CricketerType
+    @State var intCareerStart: Date
     
     @State var selectedImage: UIImage? = nil
     
@@ -59,12 +64,7 @@ struct SignUpView: View {
                     HeaderTextField(header: "Email",
                                     placeHolder: "Enter Email",
                                     text: $email)
-                    
-                    HeaderTextField(header: "Password",
-                                    placeHolder: "Enter Password",
-                                    isPasswordField: true,
-                                    text: $password)
-                    
+                                        
                     HeaderTextField(header: "First Name",
                                     placeHolder: "Enter First Name",
                                     text: $firstName)
@@ -72,6 +72,42 @@ struct SignUpView: View {
                     HeaderTextField(header: "Last Name",
                                     placeHolder: "Enter Last Name",
                                     text: $lastName)
+
+
+                    
+//                    HeaderTextField(header: "Date of Birth",
+//                                    placeHolder: "Enter Your Date Of Birth",
+//                                    text: $lastName)
+                    DatePicker("Date of Birth", selection: $dateOfBirth, displayedComponents: [.date])
+                        .frame(height: 80)
+                    
+                    Picker("Select International Team", selection: $intTeamID) {
+                        ForEach(Constants.internationTeams) {
+                            team in
+                            Text(team.name)
+                                .tag(team.teamID)
+                        }
+                    }
+                    .frame(height: 50)
+                    
+                    
+//                    HeaderPicker
+//                    HeaderPickerField(placeHolder: "Enter Your Team", teams: Constants.internationTeams, text: $country, type: CricketerT)
+                    
+                    
+                    
+               
+                    
+                    
+                    
+                    
+                    
+                    
+                    HeaderTextField(header: "Password",
+                                    placeHolder: "Enter Password",
+                                    isPasswordField: true,
+                                    text: $password)
+
                 
                     
                     Button {
@@ -120,7 +156,7 @@ struct SignUpView: View {
 
 #Preview {
     NavigationStack {
-        SignUpView()
+        SignUpView(dateOfBirth: .now, country: "", type: CricketerType.allRounder, intCareerStart: .now)
             .environmentObject(OnboardingViewModel())
     }
 }

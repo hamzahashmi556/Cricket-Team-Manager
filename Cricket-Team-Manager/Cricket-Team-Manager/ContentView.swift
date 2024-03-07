@@ -28,9 +28,9 @@ struct ContentView: View {
             .navigationDestination(isPresented: $onboardingVM.isPresentLogin) {
                 LoginView()
             }
-            .navigationDestination(isPresented: $onboardingVM.isPresentSignup) {
-                SignUpView()
-            }
+//            .navigationDestination(isPresented: $onboardingVM.isPresentSignup) {
+//                SignUpView(dateOfBirth: ., country: <#String#>, type: <#CricketerType#>, intCareerStart: <#Date#>)
+//            }
 
         }
         .environmentObject(onboardingVM)
