@@ -19,6 +19,8 @@ final class FirestoreManager {
     
     private init() {}
     
+    var cachedUsers: [AppUser] = []
+    
     func updateUser(user: AppUser) {
         
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -59,9 +61,23 @@ final class FirestoreManager {
     }
     
     func fetchUser(userID: String) async throws -> AppUser {
+        
+        if let cacheUser = self.cachedUsers.first(where: { $0.uid == userID }) {
+            return cacheUser
+        }
         let document = try await usersRef.document(userID).getDocument()
+        
         let user = try document.data(as: AppUser.self)
+        
+        self.updateCache(user: user)
+        
         return user
+    }
+    
+    func updateCache(user: AppUser) {
+        if !self.cachedUsers.contains(where: { $0.uid == user.uid }) {
+            self.cachedUsers.append(user)
+        }
     }
     /*
     func addTeamsToFirestore() {

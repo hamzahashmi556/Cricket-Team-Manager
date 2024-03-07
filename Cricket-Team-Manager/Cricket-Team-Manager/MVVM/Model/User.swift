@@ -9,6 +9,8 @@ import Foundation
 
 struct AppUser: Codable {
     
+    var uid: String = ""
+    
     // Basic Sign Up
     var firstName: String = ""
     var lastName: String = ""
@@ -28,17 +30,8 @@ struct AppUser: Codable {
 
     var intCareerStart: Date = .now
     var intCareerEnd: Date = .now
+    
     // Joined Team
     var intTeamID: String = ""
-    var domesticTeamIDs: [String] = []
-    
     var isProfileCompleted = false
-}
-
-struct Team: Codable, Identifiable, Hashable {
-    var id = UUID().uuidString
-    var teamID: String
-    var name: String
-    var imageName: String
-    var type: TeamType
 }
