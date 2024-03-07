@@ -13,6 +13,7 @@ struct Cricket_Team_ManagerApp: App {
     
     init() {
         FirebaseApp.configure()
+//        FirestoreManager.shared.addTeamsToFirestore()
     }
     
     var body: some Scene {

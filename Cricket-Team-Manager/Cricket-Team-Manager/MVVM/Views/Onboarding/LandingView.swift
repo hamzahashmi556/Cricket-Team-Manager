@@ -47,7 +47,7 @@ struct LandingView: View {
             VStack {
                 
                 if !showSplash {
-                    Text("Welcome to\nUBIT REAL ESTATE BUSINESS")
+                    Text("Welcome to\n Cricket Team Manager")
                         .font(.title)
                         .bold()
                         .padding(.vertical)

@@ -17,11 +17,13 @@ struct AppUser: Codable {
     var country : String
     var type: CricketerType
     var intCareerStart: Date
-    var intTeam: Team
-    var domesticTeams: [Team]
+    var intTeamID: String
+    var domesticTeamIDs: [String]
 }
 
 struct Team: Codable {
+    var id = UUID().uuidString
+    var teamID: String
     var name: String
     var imageName: String
     var type: TeamType
