@@ -16,9 +16,7 @@ final class OnboardingViewModel: ObservableObject {
     @Published var isLoading = false
     
     @Published var isPresentLogin = false
-    @Published var isPresentCreateUser = false
-    @Published var isPresentCreatTeam = false
-    @Published var isPresentSelectSignup = false
+    @Published var isPresentSignUp = false
     
     
     @Published var errorMessage = ""
@@ -72,13 +70,14 @@ final class OnboardingViewModel: ObservableObject {
         }
     }
     
-    func signUpUser(email: String, password: String, firstName: String, lastName: String, selectedImage: UIImage?, dateOfBirth: Date, internationalTeamID: String, type: CricketerType, domesticTeams: [String] = [], country: String, careerStartDate: Date) {
-        guard !email.isEmpty else {
+    func signUpUser(user: AppUser, password: String, selectedImage: UIImage?) {
+        
+        guard !user.email.isEmpty else {
             self.present(error: "Please Enter Email")
             return
         }
         
-        guard email.isValidEmail() else {
+        guard user.email.isValidEmail() else {
             self.present(error: "Email is not valid, Please Enter Correct Email Address")
             return
         }
@@ -88,17 +87,17 @@ final class OnboardingViewModel: ObservableObject {
             return
         }
         
-        guard !firstName.isEmpty else {
+        guard !user.firstName.isEmpty else {
             self.present(error: "First Name can not be empty")
             return
         }
         
-        guard !lastName.isEmpty else {
+        guard !user.lastName.isEmpty else {
             self.present(error: "Last Name can not be empty")
             return
         }
         
-        guard !country.isEmpty else {
+        guard !user.country.isEmpty else {
             self.present(error: "Country can not be empty")
             return
         }
@@ -107,19 +106,19 @@ final class OnboardingViewModel: ObservableObject {
         
         Task {
             do {
+                
+                var user = user
+                
                 // 1. Authenticate
-                try await Auth.auth().createUser(withEmail: email, password: password)
+                try await Auth.auth().createUser(withEmail: user.email, password: password)
                 
                 // 2. Upload Picture
-                var downloadURL: String? = nil
+//                var downloadURL: String? = nil
                 if let image = selectedImage {
-                    downloadURL = try await StorageManager.shared.uploadImage(image: image).absoluteString
+                    user.imageURL = try await StorageManager.shared.uploadImage(image: image).absoluteString
                 }
                 
                 // 3. Create Database
-//                let user = AppUser(email: email, firstName: firstName, lastName: lastName, imageURL: downloadURL)
-                let user = AppUser(email: email, imageURL: downloadURL, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, country: country, type: type, intCareerStart: careerStartDate, intTeamID: internationalTeamID, domesticTeamIDs: domesticTeams)
-                
                 FirestoreManager.shared.updateUser(user: user)
                 
                 self.isLoading = false

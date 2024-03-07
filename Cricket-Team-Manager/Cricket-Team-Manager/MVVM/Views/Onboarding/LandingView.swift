@@ -34,7 +34,7 @@ struct LandingView: View {
                     
                     
                     Button {
-                        self.onboardingVM.isPresentSelectSignup.toggle()
+                        self.onboardingVM.isPresentSignUp.toggle()
                     } label: {
                         AppButton(title: "Signup", textColor: .white)
                     }

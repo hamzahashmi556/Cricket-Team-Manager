@@ -30,13 +30,29 @@ enum LoginState {
 }
 
 enum CricketerType: String, Codable, CaseIterable {
+    case none
     case allRounder
     case batsman
     case bowler
     case wicketKeeper
 }
 
+enum BatsmanType: String, Codable, CaseIterable {
+    case left = "Left-Arm Batsman"
+    case righ = "Right-Arm Batsman"
+}
+
+enum BowlerType: String, Codable, CaseIterable {
+    case rightFast = "Right-Arm Fast Bowler"
+    case leftFast = "Left-Arm Fast Bowler"
+    case rightMedium = "Right-Arm Medium Fast Bowler"
+    case leftMedium = "Left-Arm Medium Fast Bowler"
+    case legSpinner = "Leg Spinner"
+    case offSpinner = "Off Spinner"
+}
+
 enum TeamType: Codable {
+    case none
     case international
     case domestic
 }
