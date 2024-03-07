@@ -29,22 +29,42 @@ enum LoginState {
     case home
 }
 
+enum Gender: String, Codable, CaseIterable {
+    case male = "Male"
+    case female = "Female"
+}
+
 enum CricketerType: String, Codable, CaseIterable {
-    case none
-    case allRounder
-    case batsman
-    case bowler
-    case wicketKeeper
+    case none = "Select Your Type"
+    case allRounder = "All Rounder"
+    case batsman = "Batsman"
+    case bowler = "Bowler"
+    case wicketKeeper = "Wicket Keeper"
+    
+    func text(gender: Gender) -> String {
+        switch self {
+        case .none:
+            return "Select Your Type"
+        case .allRounder:
+            return "All Rounder"
+        case .batsman:
+            return gender == .male ? self.rawValue : "Batswoman"
+        case .bowler:
+            return self.rawValue
+        case .wicketKeeper:
+            return self.rawValue
+        }
+    }
 }
 
 enum BatsmanType: String, Codable, CaseIterable {
-    case none
+    case none = "Select Your Type"
     case left = "Left-Arm Batsman"
     case righ = "Right-Arm Batsman"
 }
 
 enum BowlerType: String, Codable, CaseIterable {
-    case none
+    case none = "Select Your Type"
     case rightFast = "Right-Arm Fast Bowler"
     case leftFast = "Left-Arm Fast Bowler"
     case rightMedium = "Right-Arm Medium Fast Bowler"

@@ -11,7 +11,7 @@ import SwiftUI
 
 final class OnboardingViewModel: ObservableObject {
         
-    @Published var userState: LoginState = Auth.auth().currentUser == nil ? .login : .home
+    @Published var userState: LoginState = .login
     
     @Published var isLoading = false
     
@@ -22,7 +22,21 @@ final class OnboardingViewModel: ObservableObject {
     @Published var user = AppUser()
     
     init() {
-        //self.addAuthenticationListener()
+        self.setupUserState()
+    }
+    
+    func setupUserState() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            self.userState = .login
+            return
+        }
+        
+        Task { @MainActor in
+            do {
+                let user = try await FirestoreManager.shared.fetchUser(userID: uid)
+                self.userState = user.isProfileCompleted ? .home : .newUser
+            }
+        }
     }
     /*
     private func addAuthenticationListener() {
@@ -103,9 +117,14 @@ final class OnboardingViewModel: ObservableObject {
                 // 1. Authenticate
                 try await Auth.auth().createUser(withEmail: email, password: password)
                 
+                // 2. Upload Image
+                if let image = selectedImage {
+                    user.imageURL = try await StorageManager.shared.uploadImage(image: image).absoluteString
+                }
+                
                 // 2. Create Database
                 user.email = email
-                FirestoreManager.shared.updateUser(user: user)
+                try await FirestoreManager.shared.updateUser(user: user)
                 
                 // 3. Hide Loader
                 self.isLoading = false
@@ -122,7 +141,7 @@ final class OnboardingViewModel: ObservableObject {
         }
     }
     
-    func createAccount(selectedImage: UIImage?) {
+    func createAccount() {
         
         guard !user.firstName.isEmpty else {
             self.present(error: "First Name can not be empty")
@@ -143,15 +162,7 @@ final class OnboardingViewModel: ObservableObject {
         
         Task { @MainActor in
             do {
-                // 2. Upload Picture
-                var downloadURL: String? = nil
-                if let image = selectedImage {
-                    downloadURL = try await StorageManager.shared.uploadImage(image: image).absoluteString
-                }
-                
-                user.imageURL = downloadURL
-                
-                FirestoreManager.shared.updateUser(user: user)
+                try await FirestoreManager.shared.updateUser(user: user)
                 self.isLoading = false
                 withAnimation {
                     self.userState = .home

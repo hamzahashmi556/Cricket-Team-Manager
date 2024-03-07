@@ -23,10 +23,14 @@ struct CreateAccountView: View {
         ZStack {
 
             List {
+                BasicInfoSection()
                 CareerSection()
-            }
-            .alert(isPresented: $onboardingVM.showError) {
-                Alert(title: Text("Error"), message: Text(onboardingVM.errorMessage), dismissButton: .default(Text("OK")))
+                
+                Button(action: {
+                    onboardingVM.createAccount()
+                }, label: {
+                    AppButton(title: "Create Account", textColor: .white)
+                })
             }
             
             if onboardingVM.isLoading {
@@ -35,29 +39,40 @@ struct CreateAccountView: View {
         }
         .navigationTitle("Create Account")
         .navigationBarTitleDisplayMode(.inline)
-//        .toolbarBackground(.visible, for: .navigationBar)
+        .alert(isPresented: $onboardingVM.showError) {
+            Alert(title: Text("Error"), message: Text(onboardingVM.errorMessage), dismissButton: .default(Text("OK")))
+        }
     }
     
     func BasicInfoSection() -> some View {
         Section("Bio Details") {
-                        HeaderTextField(header: "City", placeHolder: "Enter Your Country Name", text: $onboardingVM.user.city)
             
-                        HeaderTextField(header: "Country", placeHolder: "Enter Your Country Name", text: $onboardingVM.user.country)
-            
-            
-                        DatePicker("Date of Birth", selection: $onboardingVM.user.dateOfBirth, displayedComponents: [.date])
-                            .frame(height: 80)
-
+            VStack {
+                Picker("Gender", selection: $onboardingVM.user.gender) {
+                    ForEach(Gender.allCases, id: \.self) { gender in
+                        Text(gender.rawValue)
+                    }
+                }
+                .pickerStyle(.segmented)
+                
+                HeaderTextField(header: "City", placeHolder: "Enter Your Country Name", text: $onboardingVM.user.city)
+                
+                HeaderTextField(header: "Country", placeHolder: "Enter Your Country Name", text: $onboardingVM.user.country)
+                
+                DatePicker("Date of Birth", selection: $onboardingVM.user.dateOfBirth, displayedComponents: [.date])
+            }
         }
     }
     
     func CareerSection() -> some View {
         Section("Career Info") {
-            Picker("Cricketer Type", selection: $onboardingVM.user.type) {
+            
+            Picker("Cricketer Type", selection: $onboardingVM.user.type.animation()) {
                 ForEach(CricketerType.allCases, id: \.self) { type in
-                    Text(type.rawValue)
+                    Text(type.text(gender: onboardingVM.user.gender))
                 }
             }
+            
             if onboardingVM.user.type == .allRounder {
                 BowlerSelectionView()
                 BatsmanSelectionView()
@@ -68,6 +83,7 @@ struct CreateAccountView: View {
             else if onboardingVM.user.type == .batsman {
                 BatsmanSelectionView()
             }
+            
             Picker("Select International Team", selection: $onboardingVM.user.intTeamID) {
                 ForEach(Constants.internationalTeams) {
                     team in
@@ -121,7 +137,6 @@ struct CreateAccountView: View {
         Picker("Select Batting Style", selection: $onboardingVM.user.batsman) {
             ForEach(BatsmanType.allCases, id: \.self) { type in
                 Text(type.rawValue)
-//                    .tag(type.hashValue)
             }
         }
     }

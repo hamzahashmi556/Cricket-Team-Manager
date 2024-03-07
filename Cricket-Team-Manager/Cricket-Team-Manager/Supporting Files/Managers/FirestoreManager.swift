@@ -20,6 +20,7 @@ final class FirestoreManager {
     private init() {}
     
     func updateUser(user: AppUser) {
+        
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
@@ -30,6 +31,30 @@ final class FirestoreManager {
         catch {
             print(#function)
             print("Decoding Error user: \(error)")
+        }
+    }
+    
+    func updateUser(user: AppUser) async throws -> Void {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        return try await withUnsafeThrowingContinuation { continuation in
+            do {
+                try usersRef.document(uid).setData(from: user) { error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    }
+                    else {
+                        continuation.resume()
+                    }
+                }
+            }
+            catch {
+                print(#function)
+                print("Decoding Error user: \(error)")
+            }
         }
     }
     

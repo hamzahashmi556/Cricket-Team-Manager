@@ -12,7 +12,7 @@ struct AppButton: View {
     
     @State var title: String
     
-    @State var textColor: Color = .accentColor
+    @State var textColor: Color = .white
     
     @State var backgroundColor: Color = .accentColor
     

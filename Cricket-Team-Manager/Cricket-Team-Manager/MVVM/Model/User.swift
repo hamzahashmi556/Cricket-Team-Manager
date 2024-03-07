@@ -16,6 +16,7 @@ struct AppUser: Codable {
     var imageURL: String? = nil
 
     // Bio
+    var gender = Gender.male
     var city: String = ""
     var country : String = ""
     var dateOfBirth: Date = .now
