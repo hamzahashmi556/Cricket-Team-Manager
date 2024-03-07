@@ -21,7 +21,8 @@ struct ContentView: View {
                 case .newUser:
                     OnboardingTutorialView()
                 case .home:
-                    TabbarView()
+                    Text("Tabbar")
+//                    TabbarView()
                 }
             }
             .navigationDestination(isPresented: $onboardingVM.isPresentLogin) {

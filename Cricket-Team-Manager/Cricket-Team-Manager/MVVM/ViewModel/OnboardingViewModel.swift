@@ -23,7 +23,7 @@ final class OnboardingViewModel: ObservableObject {
     @Published var showError = false
     
     init() {
-        self.addAuthenticationListener()
+//        self.addAuthenticationListener()
     }
     
     private func addAuthenticationListener() {
@@ -110,8 +110,9 @@ final class OnboardingViewModel: ObservableObject {
                 }
                 
                 // 3. Create Database
-                let user = AppUser(email: email, firstName: firstName, lastName: lastName, imageURL: downloadURL)
-                FirestoreManager.shared.updateUser(user: user)
+//                let user = AppUser(email: email, firstName: firstName, lastName: lastName, imageURL: downloadURL)
+//                let user = AppUser(email: <#T##String#>, imageURL: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, dateOfBirth: <#T##Date#>, country: <#T##String#>, type: <#T##CricketerType#>, intCareerStart: <#T##Date#>, intTeam: <#T##Team#>, domesticTeams: <#T##[Team]#>)
+//                FirestoreManager.shared.updateUser(user: user)
                 
                 self.isLoading = false
             }

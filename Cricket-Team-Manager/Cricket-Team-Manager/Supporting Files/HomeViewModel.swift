@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class HomeViewModel: ObservableObject {
-    
-    @Published var searchType: PropertyType = .homes
-    
-}
+//final class HomeViewModel: ObservableObject {
+//    
+//    @Published var searchType: PropertyType = .homes
+//    
+//}

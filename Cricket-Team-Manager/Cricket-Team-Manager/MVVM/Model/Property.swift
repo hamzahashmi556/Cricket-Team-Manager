@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Property: Codable {
-    var amount: Int
-    var address: String
-    var city: String
-    var service: ServiceType
-    var contactNumber: String
-}
+//struct Property: Codable {
+//    var amount: Int
+//    var address: String
+//    var city: String
+//    var service: ServiceType
+//    var contactNumber: String
+//}

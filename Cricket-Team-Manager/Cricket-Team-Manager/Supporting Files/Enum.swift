@@ -7,24 +7,36 @@
 
 import Foundation
 
-enum PropertyType {
-    case homes
-    case plots
-}
-
-enum ServiceType: Codable {
-    case rent
-    case sell
-}
-
-enum City: Codable {
-    case Karachi
-    case Lahore
-    case Islamabad
-}
-
+//enum PropertyType {
+//    case homes
+//    case plots
+//}
+//
+//enum ServiceType: Codable {
+//    case rent
+//    case sell
+//}
+//
+//enum City: Codable {
+//    case Karachi
+//    case Lahore
+//    case Islamabad
+//}
+//
 enum LoginState {
     case login
     case newUser
     case home
+}
+
+enum CricketerType: Codable {
+    case allRounder
+    case batsman
+    case bowler
+    case wicketKeeper
+}
+
+enum TeamType: Codable {
+    case international
+    case domestic
 }

@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-struct TabbarView: View {
-    var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person.circle")
-                }
-        }
-    }
-}
+//struct TabbarView: View {
+//    var body: some View {
+//        TabView {
+//            HomeView()
+//                .tabItem {
+//                    Label("Home", systemImage: "house")
+//                }
+//            
+//            ProfileView()
+//                .tabItem {
+//                    Label("Profile", systemImage: "person.circle")
+//                }
+//        }
+//    }
+//}
 
-#Preview {
-    TabbarView()
-}
+//#Preview {
+//    TabbarView()
+//}
