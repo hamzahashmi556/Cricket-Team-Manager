@@ -16,7 +16,9 @@ final class OnboardingViewModel: ObservableObject {
     @Published var isLoading = false
     
     @Published var isPresentLogin = false
-    @Published var isPresentSignup = false
+    @Published var isPresentCreateUser = false
+    @Published var isPresentCreatTeam = false
+    @Published var isPresentSelectSignup = false
     
     
     @Published var errorMessage = ""
@@ -70,7 +72,7 @@ final class OnboardingViewModel: ObservableObject {
         }
     }
     
-    func signUpUser(email: String, password: String, firstName: String, lastName: String, selectedImage: UIImage?) {
+    func signUpUser(email: String, password: String, firstName: String, lastName: String, selectedImage: UIImage?, dateOfBirth: Date, internationalTeamID: String, type: CricketerType, domesticTeams: [String] = [], country: String, careerStartDate: Date) {
         guard !email.isEmpty else {
             self.present(error: "Please Enter Email")
             return
@@ -96,6 +98,11 @@ final class OnboardingViewModel: ObservableObject {
             return
         }
         
+        guard !country.isEmpty else {
+            self.present(error: "Country can not be empty")
+            return
+        }
+        
         self.isLoading = true
         
         Task {
@@ -111,8 +118,9 @@ final class OnboardingViewModel: ObservableObject {
                 
                 // 3. Create Database
 //                let user = AppUser(email: email, firstName: firstName, lastName: lastName, imageURL: downloadURL)
-//                let user = AppUser(email: <#T##String#>, imageURL: <#T##String#>, firstName: <#T##String#>, lastName: <#T##String#>, dateOfBirth: <#T##Date#>, country: <#T##String#>, type: <#T##CricketerType#>, intCareerStart: <#T##Date#>, intTeam: <#T##Team#>, domesticTeams: <#T##[Team]#>)
-//                FirestoreManager.shared.updateUser(user: user)
+                let user = AppUser(email: email, imageURL: downloadURL, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, country: country, type: type, intCareerStart: careerStartDate, intTeamID: internationalTeamID, domesticTeamIDs: domesticTeams)
+                
+                FirestoreManager.shared.updateUser(user: user)
                 
                 self.isLoading = false
             }

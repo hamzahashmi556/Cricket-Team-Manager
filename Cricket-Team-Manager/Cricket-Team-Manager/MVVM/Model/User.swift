@@ -10,7 +10,7 @@ import Foundation
 struct AppUser: Codable {
     
     var email: String
-    var imageURL: String
+    var imageURL: String?
     var firstName: String
     var lastName: String
     var dateOfBirth: Date

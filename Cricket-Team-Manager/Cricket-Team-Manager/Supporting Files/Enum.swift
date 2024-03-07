@@ -29,7 +29,7 @@ enum LoginState {
     case home
 }
 
-enum CricketerType: Codable {
+enum CricketerType: String, Codable, CaseIterable {
     case allRounder
     case batsman
     case bowler

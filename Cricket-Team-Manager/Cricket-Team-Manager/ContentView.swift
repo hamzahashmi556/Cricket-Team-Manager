@@ -28,10 +28,15 @@ struct ContentView: View {
             .navigationDestination(isPresented: $onboardingVM.isPresentLogin) {
                 LoginView()
             }
-//            .navigationDestination(isPresented: $onboardingVM.isPresentSignup) {
-//                SignUpView(dateOfBirth: ., country: <#String#>, type: <#CricketerType#>, intCareerStart: <#Date#>)
-//            }
-
+            .navigationDestination(isPresented: $onboardingVM.isPresentSelectSignup) {
+                SelectSignUP()
+            }
+            .navigationDestination(isPresented: $onboardingVM.isPresentCreateUser) {
+                CreateUserView()
+            }
+            .navigationDestination(isPresented: $onboardingVM.isPresentCreatTeam) {
+                CreateTeamView()
+            }
         }
         .environmentObject(onboardingVM)
     }

@@ -72,22 +72,22 @@ struct LoginView: View {
                     .padding(.bottom)
                     .padding(.horizontal)
                     
-                    HStack {
-                        Text("Don't have an account,")
-                        
-                        Button(action: {
-                            if self.onboardingVM.isPresentSignup {
-                                self.onboardingVM.isPresentLogin = false
-                            }
-                            else {
-                                self.onboardingVM.isPresentSignup = true
-                            }
-                        }, label: {
-                            Text("sign up")
-                                .underline()
-                        })
-                    }
-                    .padding(.bottom)
+//                    HStack {
+//                        Text("Don't have an account,")
+//                        
+//                        Button(action: {
+//                            if self.onboardingVM.isPresentSignup {
+//                                self.onboardingVM.isPresentLogin = false
+//                            }
+//                            else {
+//                                self.onboardingVM.isPresentSignup = true
+//                            }
+//                        }, label: {
+//                            Text("sign up")
+//                                .underline()
+//                        })
+//                    }
+//                    .padding(.bottom)
                 }
             }
             .alert(isPresented: $onboardingVM.showError) {
