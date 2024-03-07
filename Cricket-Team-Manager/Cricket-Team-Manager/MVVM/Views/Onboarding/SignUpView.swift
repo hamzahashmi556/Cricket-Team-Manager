@@ -118,14 +118,23 @@ struct SignUpView: View {
             
             Picker("Cricketer Type", selection: $user.type) {
                 ForEach(CricketerType.allCases, id: \.self) { type in
-                    //                            Text(CricketerType.allCases[index].rawValue)
-                    //                                .tag(index)
                     Text(type.rawValue)
                 }
             }
+
+            if user.type == .allRounder  {
+                BowlerSelectionView()
+                BatsmanSelectionView()
+            }
+            else if user.type == .bowler {
+                BowlerSelectionView()
+            }
+            else if user.type == .batsman {
+                BatsmanSelectionView()
+            }
             
             Picker("Select International Team", selection: $user.intTeamID) {
-                ForEach(Constants.internationTeams) {
+                ForEach(Constants.internationalTeams) {
                     team in
                     Text(team.name)
                         .tag(team.teamID)
@@ -170,16 +179,30 @@ struct SignUpView: View {
     }
     
     func BowlerSelectionView() -> some View {
-        ForEach(BowlerType.allCases, id: \.self) { type in
-            
+        Picker("Select Bowling Style", selection: $user.bowler) {
+            ForEach(BowlerType.allCases, id: \.self) { type in
+                Text(type.rawValue)
+                    .tag(type.rawValue)
+            }
+        }
+    }
+    
+    func BatsmanSelectionView() -> some View {
+        Picker("Select Batting Style", selection: $user.batsman) {
+            ForEach(BatsmanType.allCases, id: \.self) { type in
+                Text(type.rawValue)
+//                    .tag(type.hashValue)
+            }
         }
     }
 }
 
 #Preview {
     NavigationStack {
+        SignUpView()
 //        CreateUserView()
 //        CreateUserView(dateOfBirth: .now, country: "", type: CricketerType.allRounder, intCareerStart: .now)
-//            .environmentObject(OnboardingViewModel())
+//
     }
+    .environmentObject(OnboardingViewModel())
 }

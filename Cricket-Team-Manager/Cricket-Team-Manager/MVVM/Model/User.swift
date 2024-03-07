@@ -24,6 +24,8 @@ struct AppUser: Codable {
     var intCareerStart: Date = .now
     var intTeamID: String = ""
     var domesticTeamIDs: [String] = []
+    var batsman : BatsmanType = .none
+    var bowler: BowlerType = .none
 }
 
 struct Team: Codable, Identifiable, Hashable {
