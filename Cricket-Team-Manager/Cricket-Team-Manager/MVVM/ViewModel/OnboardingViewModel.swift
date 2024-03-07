@@ -17,15 +17,20 @@ final class OnboardingViewModel: ObservableObject {
     
     @Published var isPresentLogin = false
     @Published var isPresentSignUp = false
+//    @Published var isPresentCreateAccount = false
     
     
     @Published var errorMessage = ""
     @Published var showError = false
     
-    init() {
-//        self.addAuthenticationListener()
-    }
+    // only used when signing up
+    @Published var user = AppUser()
     
+    init() {
+        try! Auth.auth().signOut()
+        //self.addAuthenticationListener()
+    }
+    /*
     private func addAuthenticationListener() {
         Auth.auth().addStateDidChangeListener { auth, user in
             
@@ -38,6 +43,7 @@ final class OnboardingViewModel: ObservableObject {
             
         }
     }
+     */
     
     func loginUser(email: String, password: String) {
         
@@ -62,6 +68,9 @@ final class OnboardingViewModel: ObservableObject {
             do {
                 try await Auth.auth().signIn(withEmail: email, password: password)
                 self.isLoading = false
+                withAnimation {
+                    self.userState = .home
+                }
             }
             catch {
                 self.isLoading = false
@@ -70,14 +79,14 @@ final class OnboardingViewModel: ObservableObject {
         }
     }
     
-    func signUpUser(user: AppUser, password: String, selectedImage: UIImage?) {
+    func signUpUser(email: String, password: String) {
         
-        guard !user.email.isEmpty else {
+        guard !email.isEmpty else {
             self.present(error: "Please Enter Email")
             return
         }
         
-        guard user.email.isValidEmail() else {
+        guard email.isValidEmail() else {
             self.present(error: "Email is not valid, Please Enter Correct Email Address")
             return
         }
@@ -86,6 +95,32 @@ final class OnboardingViewModel: ObservableObject {
             self.present(error: "Password can not be empty")
             return
         }
+        
+        self.isLoading = true
+        
+        Task { @MainActor in
+            do {
+                
+                // 1. Authenticate
+                try await Auth.auth().createUser(withEmail: email, password: password)
+                
+                // 2. Create Database
+                user.email = email
+                FirestoreManager.shared.updateUser(user: user)
+                
+                self.isLoading = false
+                withAnimation {
+                    self.userState = .newUser
+                }
+            }
+            catch {
+                self.present(error: error.localizedDescription)
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func createAccount(selectedImage: UIImage?) {
         
         guard !user.firstName.isEmpty else {
             self.present(error: "First Name can not be empty")
@@ -104,28 +139,25 @@ final class OnboardingViewModel: ObservableObject {
         
         self.isLoading = true
         
-        Task {
+        Task { @MainActor in
             do {
-                
-                var user = user
-                
-                // 1. Authenticate
-                try await Auth.auth().createUser(withEmail: user.email, password: password)
-                
                 // 2. Upload Picture
-//                var downloadURL: String? = nil
+                var downloadURL: String? = nil
                 if let image = selectedImage {
-                    user.imageURL = try await StorageManager.shared.uploadImage(image: image).absoluteString
+                    downloadURL = try await StorageManager.shared.uploadImage(image: image).absoluteString
                 }
                 
-                // 3. Create Database
-                FirestoreManager.shared.updateUser(user: user)
+                user.imageURL = downloadURL
                 
+                FirestoreManager.shared.updateUser(user: user)
                 self.isLoading = false
+                withAnimation {
+                    self.userState = .home
+                }
             }
             catch {
-                self.present(error: error.localizedDescription)
                 self.isLoading = false
+                self.present(error: error.localizedDescription)
             }
         }
 

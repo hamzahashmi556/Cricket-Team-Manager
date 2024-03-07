@@ -19,7 +19,7 @@ struct ContentView: View {
                 case .login:
                     LandingView()
                 case .newUser:
-                    OnboardingTutorialView()
+                    CreateAccountView()
                 case .home:
                     Text("Tabbar")
 //                    TabbarView()

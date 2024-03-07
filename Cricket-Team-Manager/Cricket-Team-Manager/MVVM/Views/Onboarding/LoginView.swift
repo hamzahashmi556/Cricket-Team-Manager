@@ -21,13 +21,13 @@ struct LoginView: View {
     
     @FocusState var focusPassword: Bool
     
-    let imageSize: CGFloat = .width() / 3
+    let imageSize: CGFloat = .width() / 2
         
     var body: some View {
         
         ZStack {
 
-            List {
+            VStack {
                 
                 Image(.logo)
                     .resizable()
@@ -37,7 +37,7 @@ struct LoginView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top)
 
-                VStack {
+                VStack(spacing: 20) {
                     
                     HeaderTextField(header: "Email",
                                     placeHolder: "Enter Email",
@@ -61,6 +61,8 @@ struct LoginView: View {
                     
                 }
                 
+                Spacer()
+                
                 VStack {
                     
                     Button {
@@ -72,33 +74,37 @@ struct LoginView: View {
                     .padding(.bottom)
                     .padding(.horizontal)
                     
-//                    HStack {
-//                        Text("Don't have an account,")
-//                        
-//                        Button(action: {
-//                            if self.onboardingVM.isPresentSignup {
-//                                self.onboardingVM.isPresentLogin = false
-//                            }
-//                            else {
-//                                self.onboardingVM.isPresentSignup = true
-//                            }
-//                        }, label: {
-//                            Text("sign up")
-//                                .underline()
-//                        })
-//                    }
-//                    .padding(.bottom)
+                    HStack {
+                        Text("Don't have an account,")
+                        
+                        Button(action: {
+                            if self.onboardingVM.isPresentSignUp {
+                                self.onboardingVM.isPresentLogin = false
+                            }
+                            else {
+                                self.onboardingVM.isPresentSignUp = true
+                            }
+                        }, label: {
+                            Text("sign up")
+                                .underline()
+                        })
+                    }
+                    .padding(.bottom)
                 }
             }
-            .alert(isPresented: $onboardingVM.showError) {
-                Alert(title: Text("Error"), message: Text(onboardingVM.errorMessage), dismissButton: .default(Text("OK")))
-            }
+            .padding()
+            .padding()
             
             if onboardingVM.isLoading {
                 ProgressView("Loading...")
             }
         }
+        .alert(onboardingVM.errorMessage, isPresented: $onboardingVM.showError) {
+            
+        }
         .navigationTitle("Login")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 
