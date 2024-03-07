@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var onboardingVM = OnboardingViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        NavigationStack {
+            ZStack {
+                switch onboardingVM.userState {
+                case .login:
+                    LandingView()
+                case .newUser:
+                    OnboardingTutorialView()
+                case .home:
+                    TabbarView()
+                }
+            }
+            .navigationDestination(isPresented: $onboardingVM.isPresentLogin) {
+                LoginView()
+            }
+            .navigationDestination(isPresented: $onboardingVM.isPresentSignup) {
+                SignUpView()
+            }
+
         }
-        .padding()
+        .environmentObject(onboardingVM)
     }
 }
 
