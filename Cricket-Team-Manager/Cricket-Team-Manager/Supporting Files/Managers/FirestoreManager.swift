@@ -21,21 +21,6 @@ final class FirestoreManager {
     
     var cachedUsers: [AppUser] = []
     
-    func updateUser(user: AppUser) {
-        
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        do {
-            try usersRef.document(uid).setData(from: user)
-        }
-        catch {
-            print(#function)
-            print("Decoding Error user: \(error)")
-        }
-    }
-    
     func updateUser(user: AppUser) async throws -> Void {
         
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -60,9 +45,9 @@ final class FirestoreManager {
         }
     }
     
-    func fetchUser(userID: String) async throws -> AppUser {
+    func fetchUser(userID: String, fromCache isCacheEnabled : Bool) async throws -> AppUser {
         
-        if let cacheUser = self.cachedUsers.first(where: { $0.uid == userID }) {
+        if isCacheEnabled, let cacheUser = self.cachedUsers.first(where: { $0.uid == userID }) {
             return cacheUser
         }
         let document = try await usersRef.document(userID).getDocument()

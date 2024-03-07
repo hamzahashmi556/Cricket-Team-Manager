@@ -18,7 +18,6 @@ final class OnboardingViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var showError = false
     
-    // only used when signing up
     @Published var user = AppUser()
     
     init() {
@@ -33,7 +32,7 @@ final class OnboardingViewModel: ObservableObject {
         
         Task { @MainActor in
             do {
-                let user = try await FirestoreManager.shared.fetchUser(userID: uid)
+                let user = try await FirestoreManager.shared.fetchUser(userID: uid, fromCache: false)
                 self.userState = user.isProfileCompleted ? .home : .newUser
             }
             catch {
@@ -66,7 +65,7 @@ final class OnboardingViewModel: ObservableObject {
             do {
                 let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
                 
-                let user = try await FirestoreManager.shared.fetchUser(userID: authResult.user.uid)
+                let user = try await FirestoreManager.shared.fetchUser(userID: authResult.user.uid, fromCache: false)
                 
                 self.isLoading = false
                 
@@ -82,7 +81,17 @@ final class OnboardingViewModel: ObservableObject {
         }
     }
     
-    func signUpUser(email: String, password: String, firstName: String, lastName: String, selectedImage: UIImage? = nil) {
+    func signUpUser(email: String, password: String, selectedImage: UIImage? = nil) {
+        
+        guard !user.firstName.isEmpty else {
+            self.present(error: "Please Enter First Name")
+            return
+        }
+
+        guard !user.lastName.isEmpty else {
+            self.present(error: "Please Enter Last Name")
+            return
+        }
         
         guard !email.isEmpty else {
             self.present(error: "Please Enter Email")
@@ -144,13 +153,26 @@ final class OnboardingViewModel: ObservableObject {
             return
         }
         
+        guard let uid = Auth.auth().currentUser?.uid else {
+            self.present(error: "Authentication Failed, Please Login Again")
+            return
+        }
+        
         self.isLoading = true
         
         Task { @MainActor in
             do {
-                if let uid = Auth.auth().currentUser?.uid {
-                    user.uid = uid
+                // The App reopened during sign up process, fetch the sign up fields from firestore then update with remaining fields
+                if user.firstName.isEmpty && user.lastName.isEmpty && user.email.isEmpty {
+                    let existingUser = try await FirestoreManager.shared.fetchUser(userID: uid, fromCache: false)
+                    user.imageURL = existingUser.imageURL
+                    user.firstName = existingUser.firstName
+                    user.lastName = existingUser.lastName
+                    user.email = existingUser.email
                 }
+                
+                user.uid = uid
+                user.isProfileCompleted = true
                 try await FirestoreManager.shared.updateUser(user: user)
                 
                 self.isLoading = false

@@ -42,6 +42,7 @@
 		ABA2D1A12B99B99900535C75 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D1A02B99B99900535C75 /* SignUpView.swift */; };
 		ABC5E05F2B99FD5300FBDE07 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */; };
 		ABE676502B9A32A200B75B27 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE6764F2B9A32A200B75B27 /* HomeViewModel.swift */; };
+		ABFEDE8E2B9A589F00254B3D /* Extension+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEDE8D2B9A589F00254B3D /* Extension+Codable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		ABA2D1A02B99B99900535C75 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		ABE6764F2B9A32A200B75B27 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		ABFEDE8D2B9A589F00254B3D /* Extension+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Codable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 		ABA2D15E2B99939300535C75 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ABFEDE8D2B9A589F00254B3D /* Extension+Codable.swift */,
 				ABA2D15F2B99939300535C75 /* Extension+Numbers.swift */,
 				ABA2D1602B99939300535C75 /* Extension+String.swift */,
 			);
@@ -342,6 +345,7 @@
 				5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */,
 				5D88360D2B999A4400E53E1D /* OnboardingViewModel.swift in Sources */,
 				5D8836132B999A4400E53E1D /* ProfileView.swift in Sources */,
+				ABFEDE8E2B9A589F00254B3D /* Extension+Codable.swift in Sources */,
 				ABA2D1A12B99B99900535C75 /* SignUpView.swift in Sources */,
 				ABA2D1662B99939300535C75 /* Extension+String.swift in Sources */,
 				5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */,

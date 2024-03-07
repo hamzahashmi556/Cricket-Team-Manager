@@ -28,7 +28,7 @@ final class HomeViewModel: ObservableObject {
         
         Task { @MainActor in
             do {
-                self.userProfile = try await FirestoreManager.shared.fetchUser(userID: uid)
+                self.userProfile = try await FirestoreManager.shared.fetchUser(userID: uid, fromCache: false)
             }
             catch {
                 self.show(error: error.localizedDescription)

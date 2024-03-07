@@ -17,6 +17,8 @@ struct CreateAccountView: View {
     @FocusState var focusPassword: Bool
     
     let imageSize: CGFloat = .width() / 3
+    
+    
         
     var body: some View {
         
@@ -73,6 +75,7 @@ struct CreateAccountView: View {
                     Text(type.text(gender: onboardingVM.user.gender))
                 }
             }
+            .pickerStyle(.menu)
             
             if onboardingVM.user.type == .allRounder {
                 BowlerSelectionView()
@@ -137,6 +140,7 @@ struct CreateAccountView: View {
                     .tag(type.rawValue)
             }
         }
+        .pickerStyle(.menu)
     }
     
     func BatsmanSelectionView() -> some View {
@@ -145,6 +149,7 @@ struct CreateAccountView: View {
                 Text(type.rawValue)
             }
         }
+        .pickerStyle(.menu)
     }
 }
 

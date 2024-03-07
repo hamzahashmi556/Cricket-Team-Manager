@@ -14,8 +14,8 @@ struct SignUpView: View {
     @State private var selectedImage: UIImage? = nil
     @State private var isPresentImagePicker = false
     
-    @State private var firstName = ""
-    @State private var lastName = ""
+//    @State private var firstName = ""
+//    @State private var lastName = ""
     @State private var email = ""
     @State private var password = ""
     
@@ -43,7 +43,7 @@ struct SignUpView: View {
                 
                 Button {
                     // Perform login action
-                    self.onboardingVM.signUpUser(email: email, password: password, firstName: firstName, lastName: lastName, selectedImage: selectedImage)
+                    self.onboardingVM.signUpUser(email: email, password: password, selectedImage: selectedImage)
                 } label: {
                     AppButton(title: "Sign Up", textColor: .white)
                 }
