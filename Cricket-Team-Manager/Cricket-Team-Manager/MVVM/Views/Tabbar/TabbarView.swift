@@ -21,6 +21,13 @@ struct TabbarView: View {
             }
             
             NavigationView {
+                LeagueDashBoard()
+            }
+            .tabItem {
+                Label("Leagues", systemImage: "figure.cricket")
+            }
+            
+            NavigationView {
                 ProfileView()
             }
             .tabItem {

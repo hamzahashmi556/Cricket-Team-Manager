@@ -17,6 +17,9 @@ final class HomeViewModel: ObservableObject {
     
     @Published var teams: [Team] = []
     
+    @Published var league: [League] = []
+
+    
     @Published var isLoading = false
     @Published var isPresentAlert = false
     @Published var alertMessage = ""
@@ -24,6 +27,7 @@ final class HomeViewModel: ObservableObject {
     init() {
         self.fetchUsers()
         self.fetchTeams()
+        self.fetchLeagues()
     }
     
     func fetchUsers() {
@@ -47,6 +51,14 @@ final class HomeViewModel: ObservableObject {
     func fetchTeams() {
         FirestoreManager.shared.fetchAllTeams(success: { teams in
             self.teams = teams
+        }, failure: { error in
+            self.show(error: error.localizedDescription)
+        })
+    }
+    
+    func fetchLeagues() {
+        FirestoreManager.shared.fetchAllLeagues(success: { teams in
+            self.league = teams
         }, failure: { error in
             self.show(error: error.localizedDescription)
         })

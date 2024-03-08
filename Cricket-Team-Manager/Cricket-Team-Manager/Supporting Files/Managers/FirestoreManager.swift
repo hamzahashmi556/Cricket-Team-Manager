@@ -17,6 +17,8 @@ final class FirestoreManager {
     
     private let teamsRef = Firestore.firestore().collection("Teams")
     
+    private let leaguesRef = Firestore.firestore().collection("Leagues")
+    
     private init() {}
     
     var cachedUsers: [AppUser] = []
@@ -113,6 +115,30 @@ final class FirestoreManager {
         }
     }
     
+    func fetchAllLeagues(success: @escaping ([League]) -> Void, failure: @escaping (Error) -> Void) {
+        
+        leaguesRef.addSnapshotListener { snapshot, error in
+            if let error = error {
+                failure(error)
+            }
+            else if let documents = snapshot?.documents {
+                var leagues: [League] = []
+                
+                for doc in documents {
+                    do {
+                        let league = try doc.data(as: League.self)
+                        leagues.append(league)
+                    }
+                    catch {
+                        print(#function, error)
+                    }
+                }
+                
+                success(leagues)
+            }
+        }
+    }
+    
     func createTeam(name: String, imageURL: String, players: [AppUser]) async throws {
         
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -138,6 +164,15 @@ final class FirestoreManager {
         try batch.setData(from: team, forDocument: teamsRef.document(team.id))
         
         try await batch.commit()
+    }
+    
+    func createLeague(name: String, imageURL: String, teamIDs: [String], creatorID: String) async throws {
+        
+        let league = League(creatorID: creatorID, name: name, imageURL: imageURL, teamIDs: teamIDs)
+        
+        let data = league.toDictionary()
+        
+        try await leaguesRef.document(league.id).updateData(data)
     }
     
     func updateCache(user: AppUser) {
