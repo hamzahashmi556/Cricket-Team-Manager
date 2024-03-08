@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D37E4AF2B9A58A100D552FF /* PersonalInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D37E4AE2B9A58A100D552FF /* PersonalInformationView.swift */; };
+		5D37E4B12B9A58BC00D552FF /* CareerInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D37E4B02B9A58BC00D552FF /* CareerInformationView.swift */; };
 		5D88360D2B999A4400E53E1D /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8835F72B999A4400E53E1D /* OnboardingViewModel.swift */; };
 		5D88360E2B999A4400E53E1D /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8835F92B999A4400E53E1D /* Team.swift */; };
 		5D88360F2B999A4400E53E1D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8835FA2B999A4400E53E1D /* User.swift */; };
@@ -50,6 +52,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D37E4AE2B9A58A100D552FF /* PersonalInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInformationView.swift; sourceTree = "<group>"; };
+		5D37E4B02B9A58BC00D552FF /* CareerInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerInformationView.swift; sourceTree = "<group>"; };
 		5D8835F72B999A4400E53E1D /* OnboardingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		5D8835F92B999A4400E53E1D /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		5D8835FA2B999A4400E53E1D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				5D8836032B999A4400E53E1D /* ProfileView.swift */,
+				5D37E4AE2B9A58A100D552FF /* PersonalInformationView.swift */,
+				5D37E4B02B9A58BC00D552FF /* CareerInformationView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -372,7 +378,9 @@
 				5D8836162B999A4400E53E1D /* TextField.swift in Sources */,
 				ABE676502B9A32A200B75B27 /* HomeViewModel.swift in Sources */,
 				5D8836182B999A4400E53E1D /* LandingView.swift in Sources */,
+				5D37E4B12B9A58BC00D552FF /* CareerInformationView.swift in Sources */,
 				5D8836172B999A4400E53E1D /* LoginView.swift in Sources */,
+				5D37E4AF2B9A58A100D552FF /* PersonalInformationView.swift in Sources */,
 				AB74FB682B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift in Sources */,
 				5D88360F2B999A4400E53E1D /* User.swift in Sources */,
 			);

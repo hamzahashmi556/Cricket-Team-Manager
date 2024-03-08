@@ -33,7 +33,9 @@ final class OnboardingViewModel: ObservableObject {
         Task { @MainActor in
             do {
                 let user = try await FirestoreManager.shared.fetchUser(userID: uid, fromCache: false)
-                self.userState = user.isProfileCompleted ? .home : .newUser
+                DispatchQueue.main.async {
+                    self.userState = user.isProfileCompleted ? .home : .newUser
+                }               
             }
             catch {
                 print(#function, error)
