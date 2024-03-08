@@ -59,6 +59,9 @@ final class FirestoreManager {
         }
         let document = try await usersRef.document(userID).getDocument()
         
+        guard document.exists else {
+            throw NSError(domain: "The User Does Not Exists", code: -1)
+        }
         let user = try document.data(as: AppUser.self)
         
         self.updateCache(user: user)
