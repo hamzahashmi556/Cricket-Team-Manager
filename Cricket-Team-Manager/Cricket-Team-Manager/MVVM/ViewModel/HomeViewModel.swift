@@ -74,6 +74,40 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    func update(team: Team, selectedImage: UIImage? = nil) {
+        Task { @MainActor in
+            self.isLoading = true
+            
+            do {
+                try await FirestoreManager.shared.update(team: team)
+                self.isLoading = false
+            }
+            catch {
+                self.show(error: error.localizedDescription)
+            }
+        }
+    }
+    
+    func delete(userID: String, from team: Team) {
+        Task { @MainActor in
+            do {
+                if var user = self.users.first(where: { $0.uid == userID }) {
+                    user.joinedTeamIDs.removeAll(where: { $0 == team.id })
+                    try await FirestoreManager.shared.updateUser(user: user)
+                }
+                
+                var team = team
+                
+                team.playerIDs.removeAll(where: { $0 == userID })
+                
+                try await FirestoreManager.shared.update(team: team)
+            }
+            catch {
+                self.show(error: error.localizedDescription)
+            }
+        }
+    }
+    
     private func show(error: String) {
         self.isLoading = false
         self.isPresentAlert = true

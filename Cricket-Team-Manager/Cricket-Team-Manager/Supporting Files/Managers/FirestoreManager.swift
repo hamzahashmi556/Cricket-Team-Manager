@@ -45,6 +45,11 @@ final class FirestoreManager {
         }
     }
     
+    func update(team: Team) async throws {
+        let data = try team.toDictionary()
+        try await teamsRef.document(team.id).updateData(data)
+    }
+    
     func fetchUser(userID: String, fromCache isCacheEnabled : Bool) async throws -> AppUser {
         
         if isCacheEnabled, let cacheUser = self.cachedUsers.first(where: { $0.uid == userID }) {

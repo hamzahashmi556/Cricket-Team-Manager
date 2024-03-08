@@ -14,6 +14,9 @@ struct TeamDetailsView: View {
     
     @State var team: Team
     @State var isEditingEnabled = false
+    @State var showDeleteConfirm = false
+    @State var selectedUserID: String? = nil
+    @State var selectedImage: UIImage? = nil
     
     let imageSize: CGFloat = .width() / 3
     
@@ -21,6 +24,9 @@ struct TeamDetailsView: View {
         ZStack {
             List {
                 VStack {
+                    if isEditingEnabled {
+                        EditableProfileImageView(selectedImage: $selectedImage, imageURL: team.imageURL, imageSize: imageSize)
+                    }
                     if let imageURL = homeVM.userProfile.imageURL {
                         KFImage(URL(string: imageURL))
                             .resizable()
@@ -50,6 +56,13 @@ struct TeamDetailsView: View {
                         }
                         .onMove { from, to in
                             team.playerIDs.move(fromOffsets: from, toOffset: to)
+                            homeVM.update(team: team)
+                        }
+                        .onDelete { indexSet in
+                            for index in indexSet {
+                                let userID = team.playerIDs[index]
+                                self.homeVM.delete(userID: userID, from: team)
+                            }
                         }
                     }
                     else {
