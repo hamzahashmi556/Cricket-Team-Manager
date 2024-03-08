@@ -76,6 +76,7 @@ struct CreateTeamView: View {
             }
             
         }
+        .navigationTitle("Create Team")
         .alert(homeVM.alertMessage, isPresented: $homeVM.isPresentAlert) {
             
         }

@@ -14,10 +14,10 @@ struct TabbarView: View {
     var body: some View {
         TabView {
             NavigationView {
-                HomeView()
+                TeamsDashboard()
             }
             .tabItem {
-                Label("Home", systemImage: "house")
+                Label("Teams", systemImage: "person.3")
             }
             
             NavigationView {

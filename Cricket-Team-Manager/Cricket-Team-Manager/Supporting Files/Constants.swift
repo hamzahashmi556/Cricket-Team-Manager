@@ -30,4 +30,5 @@ struct Constants {
 //        .init(teamID: "PSL-MS", name: "Multan Sultans", imageName: "", type: .domestic),
 //        .init(teamID: "PSL-IU", name: "Islamabad United", imageName: "", type: .domestic)
 //    ]
+    static let team = Team(uid: "123", name: "Karachi Kings", playerIDs: ["36iyZHz9JCVicpdNvH7Bt9f4NEz1", "6ZE2nM5JiJdGyxsnZjBBJTt0TKE2", "EufKkjDs74e53m3SYQwYTailcJH2"])
 }
