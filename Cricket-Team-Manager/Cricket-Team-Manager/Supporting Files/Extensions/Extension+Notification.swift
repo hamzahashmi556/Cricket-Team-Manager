@@ -10,4 +10,6 @@ import Foundation
 extension Notification.Name {
     
     static let closeCreateTeamView = NSNotification.Name("closeCreateTeamView")
+    
+    static let closeEditProfile = NSNotification.Name("closeEditProfile")
 }

@@ -7,10 +7,13 @@
 
 import Foundation
 import SwiftUI
+import Kingfisher
 
 struct EditableProfileImageView: View {
     
     @Binding var selectedImage: UIImage?
+    
+    @State var imageURL: String?
     
     @State var imageSize: CGFloat
     
@@ -23,6 +26,15 @@ struct EditableProfileImageView: View {
             if let selectedImage = selectedImage {
                 Image(uiImage: selectedImage)
                     .resizable()
+                    .scaledToFill()
+                    .frame(width: imageSize, height: imageSize)
+            }
+            else if let imageURL = imageURL {
+                KFImage(URL(string: imageURL))
+                    .resizable()
+                    .placeholder({
+                        ProgressView()
+                    })
                     .scaledToFill()
                     .frame(width: imageSize, height: imageSize)
             }

@@ -23,9 +23,9 @@
 		5D8836192B999A4400E53E1D /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360B2B999A4400E53E1D /* CreateAccountView.swift */; };
 		5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */; };
 		5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88361B2B99A2DD00E53E1D /* Constants.swift */; };
-		AB3BC3CA2B9A639600084516 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AB3BC3C92B9A639600084516 /* Kingfisher */; };
 		AB3BC3CC2B9A714C00084516 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BC3CB2B9A714C00084516 /* Extension+Date.swift */; };
 		AB3BC3CE2B9A8E6000084516 /* CreateTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BC3CD2B9A8E6000084516 /* CreateTeamViewModel.swift */; };
+		AB3BC3D02B9A955F00084516 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BC3CF2B9A955F00084516 /* EditProfileView.swift */; };
 		AB74FB682B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74FB672B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift */; };
 		AB74FB6A2B9991D400E0BB2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74FB692B9991D400E0BB2B /* ContentView.swift */; };
 		AB74FB6C2B9991D500E0BB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB74FB6B2B9991D500E0BB2B /* Assets.xcassets */; };
@@ -70,6 +70,7 @@
 		5D88361B2B99A2DD00E53E1D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AB3BC3CB2B9A714C00084516 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		AB3BC3CD2B9A8E6000084516 /* CreateTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewModel.swift; sourceTree = "<group>"; };
+		AB3BC3CF2B9A955F00084516 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		AB74FB642B9991D400E0BB2B /* Cricket-Team-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cricket-Team-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB74FB672B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cricket_Team_ManagerApp.swift; sourceTree = "<group>"; };
 		AB74FB692B9991D400E0BB2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				5D8836032B999A4400E53E1D /* ProfileView.swift */,
+				AB3BC3CF2B9A955F00084516 /* EditProfileView.swift */,
 				5D37E4AE2B9A58A100D552FF /* PersonalInformationView.swift */,
 				5D37E4B02B9A58BC00D552FF /* CareerInformationView.swift */,
 			);
@@ -354,6 +356,7 @@
 			files = (
 				5D88360E2B999A4400E53E1D /* Team.swift in Sources */,
 				ABA2D19D2B99A82E00535C75 /* CreateTeamView.swift in Sources */,
+				AB3BC3D02B9A955F00084516 /* EditProfileView.swift in Sources */,
 				ABA2D1632B99939300535C75 /* StorageManager.swift in Sources */,
 				ABA2D1672B99939300535C75 /* Enum.swift in Sources */,
 				ABC5E05F2B99FD5300FBDE07 /* ForgotPasswordView.swift in Sources */,
@@ -621,11 +624,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AB3BC3C92B9A639600084516 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ABFEDE912B9A626800254B3D /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		ABA2D16B2B99958700535C75 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABA2D16A2B99958700535C75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import SwiftUI
 
 final class HomeViewModel: ObservableObject {
     
@@ -51,7 +52,30 @@ final class HomeViewModel: ObservableObject {
         })
     }
     
+    func update(user: AppUser, selectedImage: UIImage?) {
+        
+        self.isLoading = true
+        
+        Task { @MainActor in
+            do {
+                var user = user
+                // 1. Upload Selected Image First
+                if let selectedImage {
+                    let imageURL = try await StorageManager.shared.uploadImage(image: selectedImage, filename: UUID().uuidString)
+                    user.imageURL = imageURL.absoluteString
+                }
+                try await FirestoreManager.shared.updateUser(user: user)
+                self.isLoading = false
+                NotificationCenter.default.post(name: .closeEditProfile, object: nil)
+            }
+            catch {
+                self.show(error: error.localizedDescription)
+            }
+        }
+    }
+    
     private func show(error: String) {
+        self.isLoading = false
         self.isPresentAlert = true
         self.alertMessage = error
     }

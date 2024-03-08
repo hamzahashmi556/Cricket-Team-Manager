@@ -7,80 +7,106 @@
 
 import SwiftUI
 import FirebaseAuth
+import Kingfisher
 
 struct ProfileView: View {
     
+    @EnvironmentObject var homeVM: HomeViewModel
+    @EnvironmentObject var onboardingVM: OnboardingViewModel
+    
+    @State var isEditing = false
     @State var selectedImage: UIImage? = nil
     
     let imageSize: CGFloat = .width() / 3
     
     @State var isPresentImagePicker = false
-
-    var icon = ["person.text.rectangle.fill" , "person.text.rectangle.fill"]
-    var titles = ["Personal Information" , "Career Information"]
     
     var body: some View {
         ZStack {
-            Color(uiColor: .groupTableViewBackground).ignoresSafeArea()
-            //                        Color.accentColor
-            //                            .ignoresSafeArea()
             
-            ScrollView {
-                VStack(alignment:.center){
-                    Text("Profile")
-                        .font(.largeTitle)
-                        .bold()
+            List {
+                
+                let user = homeVM.userProfile
+                
+                Section("Bio") {
                     
                     ImageView()
                     
-                    if selectedImage == nil {
-                        
-                        Text("User")
-                            .font(.title3)
-                        
+                    InfoRow(title: "Name", value: "\(user.firstName) \(user.lastName)")
+                    
+                    InfoRow(title: "Email", value: user.email)
+                    
+                    InfoRow(title: "Gender", value: user.gender.rawValue)
+                    
+                    InfoRow(title: "City", value: user.city)
+                    
+                    InfoRow(title: "Country", value: user.country)
+                    
+                    InfoRow(title: "Date of Birth", value: user.dateOfBirth.format("dd MMM yyyy"))
+                }
+                
+                Section("Career Information") {
+                    
+                    InfoRow(title: "Cricketer Type", value: user.type.rawValue)
+                    
+                    if user.batsman != .none {
+                        InfoRow(title: "Batting Style", value: user.batsman.rawValue)
                     }
                     
-                    List(0..<titles.count, id: \.self) { index
-                        in
-                        NavigationLink() {
-                            PersonalInformationView()
-                        } label: {
-                            HStack {
-                                Image(systemName: icon[index] )
-                                    .frame(width: 20 , alignment: .center)
-                                    .padding(.trailing, 5)
-                                
-                                
-                                Text(titles[index])
-                                    .bold()
-                                    .padding(.leading,30)
-                            }
-                        }
+                    if user.bowler != .none {
+                        InfoRow(title: "Bowling Style", value: user.bowler.rawValue)
                     }
-                    .frame(height: 132)
-                    //.listRowBackground(Color.white)
-                    //.listStyle(PlainListStyle())
-                    //.background(Color.white)
-                    Button("Logout") {
-                      try! Auth.auth().signOut()
+                    
+                    InfoRow(title: "Career Start Date", value: user.intCareerStart.format("dd MMM yyyy"))
+                    
+                    if let joinedTeam = homeVM.teams.first(where: { $0.id == user.intTeamID }) {
+                        InfoRow(title: "Joined Team", value: joinedTeam.name)
                     }
                 }
                 
+                Button {
+                    try! Auth.auth().signOut()
+                    onboardingVM.userState = .login
+                } label: {
+                    Text("Logout")
+                        .foregroundStyle(.red)
+                }
             }
         }
+        .navigationTitle("Profile")
         .sheet(isPresented: $isPresentImagePicker) {
             ImagePicker(image: $selectedImage)
             
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    EditProfileView(user: homeVM.userProfile)
+                } label: {
+                    Text("Edit")
+                }
+            }
+        }
     }
     
     func ImageView() -> some View {
-        Button(action: {
-            self.isPresentImagePicker.toggle()
-        }, label: {
+//        Button(action: {
+//            self.isPresentImagePicker.toggle()
+//        }, label: {
+//        })
+        VStack {
             if let selectedImage = selectedImage {
                 Image(uiImage: selectedImage)
                     .resizable()
+                    .scaledToFill()
+                    .frame(width: imageSize, height: imageSize)
+            }
+            else if let imageURL = homeVM.userProfile.imageURL {
+                KFImage(URL(string: imageURL))
+                    .resizable()
+                    .placeholder({
+                        ProgressView()
+                    })
                     .scaledToFill()
                     .frame(width: imageSize, height: imageSize)
             }
@@ -90,13 +116,28 @@ struct ProfileView: View {
                     .scaledToFill()
                     .frame(width: imageSize, height: imageSize)
             }
-        })
+
+        }
         .clipShape(Circle())
         .foregroundStyle(.accent)
         .frame(maxWidth: .infinity)        
     }
+    
+    func InfoRow(title: String, value: String) -> some View {
+        HStack {
+            Text(title)
+                .bold()
+            
+            Spacer()
+            
+            Text(value)
+        }
+    }
 }
 
 #Preview {
-    ProfileView()
+    NavigationView {
+        ProfileView()
+    }
+    .environmentObject(HomeViewModel())
 }
