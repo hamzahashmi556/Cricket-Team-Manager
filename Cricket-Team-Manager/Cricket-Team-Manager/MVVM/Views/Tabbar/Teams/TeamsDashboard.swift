@@ -18,7 +18,7 @@ struct TeamsDashboard: View {
     
     @State private var isPresentCreateLegue = false
     
-    @State private var selectedTeamPicker = 1
+    @State private var selectedTeamPicker = 0
     
     var body: some View {
         ZStack {
@@ -68,28 +68,29 @@ struct TeamsDashboard: View {
             self.isPresentCreateTeam = false
         })
     }
+}
+
+struct TeamRow: View {
     
-    func TeamRow(team: Team) -> some View {
-        NavigationLink {
-            TeamDetailsView(team: team)
-        } label: {
-            HStack {
+    @State var team: Team
+    
+    var body: some View {
+        HStack {
+            
+            KFImage(URL(string: team.imageURL))
+                .resizable()
+                .placeholder({
+                    Image(systemName: "person")
+                })
+                .frame(width: 50, height: 50)
+                .scaledToFill()
+                .clipShape(Circle())
+            
+            VStack(alignment: .leading) {
+                Text(team.name)
+                    .bold()
                 
-                KFImage(URL(string: team.imageURL))
-                    .resizable()
-                    .placeholder({
-                        Image(systemName: "person")
-                    })
-                    .frame(width: 50, height: 50)
-                    .scaledToFill()
-                    .clipShape(Circle())
-                
-                VStack(alignment: .leading) {
-                    Text(team.name)
-                        .bold()
-                    
-                    Text("Total Players: \(team.playerIDs.count)")
-                }
+                Text("Total Players: \(team.playerIDs.count)")
             }
         }
     }

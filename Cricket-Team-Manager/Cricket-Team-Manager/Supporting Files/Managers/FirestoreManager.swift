@@ -161,6 +161,15 @@ final class FirestoreManager {
         try await batch.commit()
     }
     
+    func createLeague(name: String, imageURL: String, teamIDs: [String], creatorID: String) async throws {
+        
+        let league = League(creatorID: creatorID, name: name, imageURL: imageURL, teamIDs: teamIDs)
+        
+        let data = league.toDictionary()
+        
+        try await leaguesRef.document(league.id).updateData(data)
+    }
+    
     func updateCache(user: AppUser) {
         if !self.cachedUsers.contains(where: { $0.uid == user.uid }) {
             self.cachedUsers.append(user)

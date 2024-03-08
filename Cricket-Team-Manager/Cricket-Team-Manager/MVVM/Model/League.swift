@@ -10,8 +10,8 @@ import Foundation
 struct League: Codable, Identifiable, Hashable {
     
     var id = UUID().uuidString
-    var uid: String
+    var creatorID: String
     var name: String = ""
     var imageURL: String = ""
-    var playerIDs: [String] = []
+    var teamIDs: [String] = []
 }

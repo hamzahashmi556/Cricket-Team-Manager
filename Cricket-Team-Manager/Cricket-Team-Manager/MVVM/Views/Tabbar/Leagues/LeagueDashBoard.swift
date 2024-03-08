@@ -84,7 +84,7 @@ struct LeagueDashBoard: View {
                     Text(league.name)
                         .bold()
                     
-                    Text("Total Players: \(league.playerIDs.count)")
+                    Text("Total Players: \(league.teamIDs.count)")
                 }
             }
         }

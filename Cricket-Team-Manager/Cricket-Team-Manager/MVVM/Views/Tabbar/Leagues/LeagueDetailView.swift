@@ -42,9 +42,13 @@ struct LeagueDetailView: View {
                 .frame(maxWidth: .infinity)
                 
                 Section("Players") {
-                    ForEach(league.playerIDs, id: \.self) { uid in
-                        if let user = homeVM.users.first(where: { $0.uid == uid }) {
-                            Text(user.firstName)
+                    ForEach(league.teamIDs, id: \.self) { teamID in
+                        if let team = homeVM.teams.first(where: { $0.id == teamID }) {
+                            NavigationLink {
+                                TeamDetailsView(team: team)
+                            } label: {
+                                TeamRow(team: team)
+                            }
                         }
                     }
                 }
