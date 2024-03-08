@@ -73,7 +73,9 @@ final class OnboardingViewModel: ObservableObject {
                 
                 // 1. Show Home if Profile is Completed else show Create Profile View
                 withAnimation {
-                    self.userState = user.isProfileCompleted ? .home : .newUser
+                    DispatchQueue.main.async {
+                        self.userState = user.isProfileCompleted ? .home : .newUser
+                    }
                 }
             }
             catch {
@@ -133,7 +135,9 @@ final class OnboardingViewModel: ObservableObject {
                 
                 // 4. Go to Create Account
                 withAnimation {
-                    self.userState = .newUser
+                    DispatchQueue.main.async {
+                        self.userState = .newUser
+                    }
                 }
             }
             catch {
@@ -180,7 +184,9 @@ final class OnboardingViewModel: ObservableObject {
                 self.isLoading = false
                 
                 withAnimation {
-                    self.userState = .home
+                    DispatchQueue.main.async {
+                        self.userState = .home
+                    }
                 }
             }
             catch {

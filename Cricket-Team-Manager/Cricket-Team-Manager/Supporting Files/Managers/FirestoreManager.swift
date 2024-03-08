@@ -170,7 +170,7 @@ final class FirestoreManager {
         
         let league = League(creatorID: creatorID, name: name, imageURL: imageURL, teamIDs: teamIDs)
         
-        let data = league.toDictionary()
+        let data = try! league.toDictionary()
         
         try await leaguesRef.document(league.id).updateData(data)
     }

@@ -30,16 +30,9 @@ struct LeagueDashBoard: View {
                 .pickerStyle(.segmented)
                 
                 
-                if selectedLeaguePicker == 0 {
-                    ForEach(homeVM.league.filter({ $0.uid == homeVM.userProfile.uid })) { League in
-                        // League Row Here
-                        LeagueRow(league: League)
-                    }
-                }
-                else {
-                    ForEach(homeVM.league.filter({ $0.uid != homeVM.userProfile.uid })) { League in
-                        LeagueRow(league: League)
-                    }
+                ForEach(homeVM.league) { League in
+                    // League Row Here
+                    LeagueRow(league: League)
                 }
             }
             
