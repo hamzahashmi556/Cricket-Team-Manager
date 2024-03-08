@@ -53,9 +53,8 @@ struct EditProfileView: View {
                 
                 EditableProfileImageView(selectedImage: $selectedImage, imageURL: user.imageURL, imageSize: .width() / 3)
                 
-                HeaderTextField(header: "First Name", placeHolder: "Enter Your First Name", text: $user.firstName)
+                HeaderTextField(header: "Full Name", placeHolder: "Enter Your Name", text: $user.firstName)
                 
-                HeaderTextField(header: "Last Name", placeHolder: "Enter Your Last Name", text: $user.lastName)
                 
                 HeaderTextField(header: "City", placeHolder: "Enter Your Country Name", text: $user.city)
                 

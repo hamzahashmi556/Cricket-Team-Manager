@@ -123,7 +123,7 @@ final class FirestoreManager {
         for i in 0 ..< players.count {
             let docRef = usersRef.document(players[i].uid)
             
-            players[i].intTeamID = team.id
+            players[i].joinedTeamIDs.append(team.id)
             
             try batch.setData(from: players[i], forDocument: docRef)
         }

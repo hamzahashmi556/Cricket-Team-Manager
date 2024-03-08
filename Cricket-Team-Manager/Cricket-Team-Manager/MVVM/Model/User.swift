@@ -36,6 +36,6 @@ struct AppUser: Codable, Identifiable {
     var intCareerEnd: Date = .now
     
     // Joined Team
-    var intTeamID: String = ""
+    var joinedTeamIDs: [String] = []
     var isProfileCompleted = false
 }

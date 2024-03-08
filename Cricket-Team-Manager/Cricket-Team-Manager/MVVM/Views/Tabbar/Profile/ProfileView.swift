@@ -14,12 +14,7 @@ struct ProfileView: View {
     @EnvironmentObject var homeVM: HomeViewModel
     @EnvironmentObject var onboardingVM: OnboardingViewModel
     
-    @State var isEditing = false
-    @State var selectedImage: UIImage? = nil
-    
     let imageSize: CGFloat = .width() / 3
-    
-    @State var isPresentImagePicker = false
     
     var body: some View {
         ZStack {
@@ -59,8 +54,10 @@ struct ProfileView: View {
                     
                     InfoRow(title: "Career Start Date", value: user.intCareerStart.format("dd MMM yyyy"))
                     
-                    if let joinedTeam = homeVM.teams.first(where: { $0.id == user.intTeamID }) {
-                        InfoRow(title: "Joined Team", value: joinedTeam.name)
+                    ForEach(user.joinedTeamIDs, id: \.self) { teamID in
+                        if let joinedTeam = homeVM.teams.first(where: { $0.id == teamID }) {
+                            InfoRow(title: "Joined Team", value: joinedTeam.name)
+                        }
                     }
                 }
                 
@@ -74,10 +71,6 @@ struct ProfileView: View {
             }
         }
         .navigationTitle("Profile")
-        .sheet(isPresented: $isPresentImagePicker) {
-            ImagePicker(image: $selectedImage)
-            
-        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
@@ -90,18 +83,8 @@ struct ProfileView: View {
     }
     
     func ImageView() -> some View {
-//        Button(action: {
-//            self.isPresentImagePicker.toggle()
-//        }, label: {
-//        })
         VStack {
-            if let selectedImage = selectedImage {
-                Image(uiImage: selectedImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: imageSize, height: imageSize)
-            }
-            else if let imageURL = homeVM.userProfile.imageURL {
+            if let imageURL = homeVM.userProfile.imageURL {
                 KFImage(URL(string: imageURL))
                     .resizable()
                     .placeholder({

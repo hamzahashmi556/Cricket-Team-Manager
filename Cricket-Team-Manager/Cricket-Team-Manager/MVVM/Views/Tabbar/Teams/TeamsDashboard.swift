@@ -71,7 +71,7 @@ struct TeamsDashboard: View {
     
     func TeamRow(team: Team) -> some View {
         NavigationLink {
-            TeamDetailsView()
+            TeamDetailsView(team: team)
         } label: {
             HStack {
                 
