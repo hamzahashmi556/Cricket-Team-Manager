@@ -65,6 +65,7 @@ struct CreateLeagueView: View {
                 ProgressView("Uploading...")
             }
         }
+        .disabled(viewModel.isLoading)
         .alert(viewModel.error, isPresented: $viewModel.showError) {
             
         }

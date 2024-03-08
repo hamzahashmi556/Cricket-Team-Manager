@@ -18,31 +18,39 @@ struct TeamsDashboard: View {
     
     @State private var isPresentCreateLegue = false
     
-    @State private var selectedTeamPicker = 0
+//    @State private var selectedTeamPicker = 0
     
     var body: some View {
         ZStack {
             List {
                 
-                Picker("", selection: $selectedTeamPicker) {
-                    Text("Your Teams")
-                        .tag(0)
-                    
-                    Text("Other Teams")
-                        .tag(1)
-                }
-                .pickerStyle(.segmented)
+//                Picker("", selection: $selectedTeamPicker) {
+//                    Text("Your Teams")
+//                        .tag(0)
+//                    
+//                    Text("Other Teams")
+//                        .tag(1)
+//                }
+//                .pickerStyle(.segmented)
                 
                 
-                if selectedTeamPicker == 0 {
-                    ForEach(homeVM.teams.filter({ $0.uid == homeVM.userProfile.uid })) { team in
-                        // Team Row Here
-                        TeamRow(team: team)
+                let myTeams = homeVM.teams.filter({ $0.uid == homeVM.userProfile.uid })
+                if !myTeams.isEmpty {
+                    Section("My Teams") {
+                        ForEach(myTeams) { team in
+                            // Team Row Here
+                            TeamRow(team: team)
+                        }
                     }
                 }
-                else {
-                    ForEach(homeVM.teams.filter({ $0.uid != homeVM.userProfile.uid })) { team in
-                        TeamRow(team: team)
+                
+                let otherTeams = homeVM.teams.filter({ $0.uid != homeVM.userProfile.uid })
+                
+                if !otherTeams.isEmpty {
+                    Section("Other Teams") {
+                        ForEach(otherTeams) { team in
+                            TeamRow(team: team)
+                        }
                     }
                 }
             }
