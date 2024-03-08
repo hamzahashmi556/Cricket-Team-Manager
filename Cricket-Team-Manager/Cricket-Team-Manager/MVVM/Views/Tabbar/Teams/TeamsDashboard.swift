@@ -18,7 +18,7 @@ struct TeamsDashboard: View {
     
     @State private var isPresentCreateLegue = false
     
-    @State private var selectedTeamPicker = 1
+    @State private var selectedTeamPicker = 0
     
     var body: some View {
         ZStack {

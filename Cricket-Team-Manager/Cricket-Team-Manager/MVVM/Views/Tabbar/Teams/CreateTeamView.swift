@@ -45,19 +45,19 @@ struct CreateTeamView: View {
                 
                 Section("All Rounders") {
                     ForEach(allRounders) { user in
-                        UserRow(user: user, viewModel: viewModel, selectionType: .allRounder)
+                        UserRowSelection(user: user, viewModel: viewModel, selectionType: .allRounder)
                     }
                 }
                 
                 Section("Batsmen") {
                     ForEach(homeVM.users.filter({ $0.type == .batsman })) { user in
-                        UserRow(user: user, viewModel: viewModel, selectionType: .batsman)
+                        UserRowSelection(user: user, viewModel: viewModel, selectionType: .batsman)
                     }
                 }
                 
                 Section("Bowlers") {
                     ForEach(homeVM.users.filter({ $0.type == .bowler })) { user in
-                        UserRow(user: user, viewModel: viewModel, selectionType: .bowler)
+                        UserRowSelection(user: user, viewModel: viewModel, selectionType: .bowler)
                     }
                 }
                 
@@ -83,98 +83,6 @@ struct CreateTeamView: View {
         .alert(viewModel.error, isPresented: $viewModel.showError) {
             
         }
-    }
-}
-
-struct UserRow: View {
-    
-    @State var user: AppUser
-    @ObservedObject var viewModel: CreateTeamViewModel
-    
-    @State var selectionType: CricketerType
-    
-    private let circleSize = 20.0
-    private let imageSize = 50.0
-    
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            
-            HStack {
-                
-                ImageCircle(foregroundColor: .accent)
-                
-                VStack(alignment: .leading, spacing: 3) {
-                    Text("Full Name:").bold()
-                    Text("\(user.firstName) \(user.lastName)")
-                }
-                
-                Spacer()
-                
-                Button {
-                    viewModel.selectPlayer(for: selectionType, user: user)
-                } label: {
-                    if viewModel.selectedPlayers.contains(where: { $0.uid == user.uid }) {
-                        Image(systemName: "checkmark.circle")
-                            .resizable()
-                            .frame(width: circleSize, height: circleSize)
-                    }
-                    else {
-                        Circle()
-                            .stroke(lineWidth: 2)
-                            .frame(width: circleSize, height: circleSize)
-                    }
-                }
-            }
-            
-            VStack(alignment: .leading) {
-                
-                if user.type == .allRounder {
-                    Text(user.type.rawValue).bold()
-                    
-                    Text("Batting Style: ").bold() + Text("\(user.batsman.rawValue)")
-                    
-                    Text("Bowling Style: ").bold() + Text("\(user.bowler.rawValue)")
-                }
-                else if user.type == .wicketKeeper {
-                    Text("\(user.type.rawValue)")
-                }
-                else if user.type == .batsman {
-                    Text("Batsman: ").bold() + Text("\(user.batsman.rawValue)")
-                }
-                else if user.type == .bowler {
-                    Text("Bowler: ").bold() + Text("\(user.bowler.rawValue)")
-                }
-                
-                HStack {
-                    Text("Started")
-                        .bold()
-                    
-                    Text("\(user.intCareerStart.format("MMM yyyy"))")
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-    }
-    
-    func ImageCircle(foregroundColor: Color) -> some View {
-        VStack {
-            if let imageURL = user.imageURL, !imageURL.isEmpty {
-                KFImage(URL(string: imageURL))
-                    .placeholder {
-                        ProgressView()
-                    }
-                    .resizable()
-            }
-            else {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .foregroundStyle(foregroundColor)
-            }
-        }
-        .frame(width: imageSize, height: imageSize)
-        .scaledToFill()
-        .clipShape(Circle())
     }
 }
 

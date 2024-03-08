@@ -47,6 +47,8 @@
 		ABC5E05F2B99FD5300FBDE07 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */; };
 		ABE676502B9A32A200B75B27 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE6764F2B9A32A200B75B27 /* HomeViewModel.swift */; };
 		ABFE49F72B9AA0ED00934DB2 /* TeamDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE49F62B9AA0ED00934DB2 /* TeamDetailsView.swift */; };
+		ABFE49FA2B9AD62C00934DB2 /* UserRowSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE49F92B9AD62C00934DB2 /* UserRowSelection.swift */; };
+		ABFE49FC2B9AD63200934DB2 /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFE49FB2B9AD63200934DB2 /* UserRow.swift */; };
 		ABFEDE8E2B9A589F00254B3D /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEDE8D2B9A589F00254B3D /* Extension+Notification.swift */; };
 		ABFEDE902B9A5E7300254B3D /* EditableProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEDE8F2B9A5E7300254B3D /* EditableProfileImageView.swift */; };
 		ABFEDE932B9A626800254B3D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ABFEDE922B9A626800254B3D /* Kingfisher */; };
@@ -88,6 +90,8 @@
 		ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		ABE6764F2B9A32A200B75B27 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		ABFE49F62B9AA0ED00934DB2 /* TeamDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsView.swift; sourceTree = "<group>"; };
+		ABFE49F92B9AD62C00934DB2 /* UserRowSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowSelection.swift; sourceTree = "<group>"; };
+		ABFE49FB2B9AD63200934DB2 /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		ABFEDE8D2B9A589F00254B3D /* Extension+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Notification.swift"; sourceTree = "<group>"; };
 		ABFEDE8F2B9A5E7300254B3D /* EditableProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableProfileImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +187,7 @@
 		5D8836042B999A4400E53E1D /* Reuse Views */ = {
 			isa = PBXGroup;
 			children = (
+				ABFE49F82B9AD60B00934DB2 /* User */,
 				5D8836052B999A4400E53E1D /* ImagePicker.swift */,
 				5D8836062B999A4400E53E1D /* AppButton.swift */,
 				5D8836072B999A4400E53E1D /* TextField.swift */,
@@ -271,6 +276,15 @@
 				ABA2D1602B99939300535C75 /* Extension+String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ABFE49F82B9AD60B00934DB2 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				ABFE49F92B9AD62C00934DB2 /* UserRowSelection.swift */,
+				ABFE49FB2B9AD63200934DB2 /* UserRow.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,10 +389,12 @@
 				5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */,
 				ABFEDE902B9A5E7300254B3D /* EditableProfileImageView.swift in Sources */,
 				5D8836122B999A4400E53E1D /* TabbarView.swift in Sources */,
+				ABFE49FC2B9AD63200934DB2 /* UserRow.swift in Sources */,
 				5D8836192B999A4400E53E1D /* CreateAccountView.swift in Sources */,
 				ABA2D1642B99939300535C75 /* FirestoreManager.swift in Sources */,
 				5D8836152B999A4400E53E1D /* AppButton.swift in Sources */,
 				ABA2D1652B99939300535C75 /* Extension+Numbers.swift in Sources */,
+				ABFE49FA2B9AD62C00934DB2 /* UserRowSelection.swift in Sources */,
 				5D8836102B999A4400E53E1D /* TeamsDashboard.swift in Sources */,
 				5D8836142B999A4400E53E1D /* ImagePicker.swift in Sources */,
 				5D8836162B999A4400E53E1D /* TextField.swift in Sources */,
