@@ -17,6 +17,8 @@ final class FirestoreManager {
     
     private let teamsRef = Firestore.firestore().collection("Teams")
     
+    private let leaguesRef = Firestore.firestore().collection("Leagues")
+    
     private init() {}
     
     var cachedUsers: [AppUser] = []
@@ -104,6 +106,30 @@ final class FirestoreManager {
                 }
                 
                 success(teams)
+            }
+        }
+    }
+    
+    func fetchAllLeagues(success: @escaping ([League]) -> Void, failure: @escaping (Error) -> Void) {
+        
+        leaguesRef.addSnapshotListener { snapshot, error in
+            if let error = error {
+                failure(error)
+            }
+            else if let documents = snapshot?.documents {
+                var leagues: [League] = []
+                
+                for doc in documents {
+                    do {
+                        let league = try doc.data(as: League.self)
+                        leagues.append(league)
+                    }
+                    catch {
+                        print(#function, error)
+                    }
+                }
+                
+                success(leagues)
             }
         }
     }
