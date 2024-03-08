@@ -21,9 +21,12 @@ final class OnboardingViewModel: ObservableObject {
     @Published var user = AppUser()
     
     init() {
-        self.setupUserState()
+        DispatchQueue.main.async {
+            self.setupUserState()
+        }
     }
     
+    @MainActor
     func setupUserState() {
         guard let uid = Auth.auth().currentUser?.uid else {
             self.userState = .login
@@ -72,14 +75,11 @@ final class OnboardingViewModel: ObservableObject {
                 self.isLoading = false
                 
                 // 1. Show Home if Profile is Completed else show Create Profile View
-                withAnimation {
-                    DispatchQueue.main.async {
-                        self.userState = user.isProfileCompleted ? .home : .newUser
-                    }
+                DispatchQueue.main.async {
+                    self.userState = user.isProfileCompleted ? .home : .newUser
                 }
             }
             catch {
-                self.isLoading = false
                 self.present(error: "Login Error: \(error.localizedDescription)")
             }
         }
@@ -134,10 +134,8 @@ final class OnboardingViewModel: ObservableObject {
                 self.isLoading = false
                 
                 // 4. Go to Create Account
-                withAnimation {
-                    DispatchQueue.main.async {
-                        self.userState = .newUser
-                    }
+                DispatchQueue.main.async {
+                    self.userState = .newUser
                 }
             }
             catch {
@@ -183,10 +181,8 @@ final class OnboardingViewModel: ObservableObject {
                 
                 self.isLoading = false
                 
-                withAnimation {
-                    DispatchQueue.main.async {
-                        self.userState = .home
-                    }
+                DispatchQueue.main.async {
+                    self.userState = .home
                 }
             }
             catch {
@@ -223,7 +219,10 @@ final class OnboardingViewModel: ObservableObject {
     }
     
     func present(error: String) {
-        self.errorMessage = error
-        self.showError = true
+        DispatchQueue.main.async {
+            self.isLoading = false
+            self.errorMessage = error
+            self.showError = true
+        }
     }
 }
