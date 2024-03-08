@@ -12,6 +12,6 @@ struct Team: Codable, Identifiable, Hashable {
     var uid: String
     var name: String = ""
     var imageURL: String = ""
-    var wicketKeeperID: String = ""
+//    var wicketKeeperID: String = ""
     var playerIDs: [String] = []
 }

@@ -64,6 +64,12 @@ class CreateTeamViewModel: ObservableObject {
     
     func createTeam() {
         
+        guard isLoading == false else {
+            return
+        }
+        
+        print(#function)
+        
         guard let selectedImage else {
             self.error = "Select Team Image"
             self.showError = true
