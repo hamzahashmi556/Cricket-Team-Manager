@@ -19,6 +19,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
+            Color.black
             List {
                 
                 Section("Your Teams") {
@@ -47,17 +48,28 @@ struct HomeView: View {
                             .frame(width: 50, height: 50)
                             .padding(.trailing)
                     })
+                    .confirmationDialog("Add", isPresented: $isPresentOptions) {
+                        Button("Create a New Team") {
+                            self.isPresentCreateTeam.toggle()
+                        }
+                        Button("Create a New League") {
+                            self.isPresentCreateTeam.toggle()
+                        }
+                    }
                 }
             }
-            .confirmationDialog("Add", isPresented: $isPresentOptions) {
-                Button("Create a New Team") {
-                    self.isPresentCreateTeam.toggle()
-                }
-                Button("Create a New League") {
-                    self.isPresentCreateTeam.toggle()
-                }
+
+            
+            NavigationLink(isActive: $isPresentCreateTeam) {
+                CreateTeamView()
+            } label: {
+                EmptyView()
             }
         }
+        
+        .onReceive(NotificationCenter.default.publisher(for: .closeCreateTeamView), perform: { _ in
+            self.isPresentCreateTeam = false
+        })
     }
 }
 

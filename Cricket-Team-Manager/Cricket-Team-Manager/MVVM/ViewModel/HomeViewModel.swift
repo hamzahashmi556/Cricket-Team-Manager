@@ -10,30 +10,45 @@ import FirebaseAuth
 
 final class HomeViewModel: ObservableObject {
     
-    var userProfile = AppUser()
     
+    @Published var users: [AppUser] = []
+    @Published var userProfile = AppUser()
+    
+    @Published var teams: [Team] = []
+    
+    @Published var isLoading = false
     @Published var isPresentAlert = false
     @Published var alertMessage = ""
     
     init() {
-        self.fetchUser()
+        self.fetchUsers()
+        self.fetchTeams()
     }
     
-    func fetchUser() {
+    func fetchUsers() {
         
-        guard let uid = Auth.auth().currentUser?.uid else {
-            self.show(error: "Session Expired, Login Again")
-            return
-        }
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            self.show(error: "Session Expired, Login Again")
+//            return
+//        }
         
-        Task { @MainActor in
-            do {
-                self.userProfile = try await FirestoreManager.shared.fetchUser(userID: uid, fromCache: false)
+        FirestoreManager.shared.fetchAllUsers { users in
+            if let uid = Auth.auth().currentUser?.uid,
+               let userProfile = users.first(where: { $0.uid == uid }) {
+                self.userProfile = userProfile
             }
-            catch {
-                self.show(error: error.localizedDescription)
-            }
+            self.users = users
+        } failure: { error in
+            self.show(error: error.localizedDescription)
         }
+    }
+    
+    func fetchTeams() {
+        FirestoreManager.shared.fetchAllTeams(success: { teams in
+            self.teams = teams
+        }, failure: { error in
+            self.show(error: error.localizedDescription)
+        })
     }
     
     private func show(error: String) {

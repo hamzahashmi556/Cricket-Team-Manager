@@ -9,9 +9,8 @@ import Foundation
 
 struct Team: Codable, Identifiable, Hashable {
     var id = UUID().uuidString
-    var teamID: String
-    var name: String
-    var imageName: String
-    var type: TeamType
+    var uid: String
+    var name: String = ""
+    var imageURL: String = ""
     var playerIDs: [String] = []
 }

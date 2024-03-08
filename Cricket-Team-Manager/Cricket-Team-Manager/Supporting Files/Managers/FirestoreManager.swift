@@ -59,6 +59,82 @@ final class FirestoreManager {
         return user
     }
     
+    func fetchAllUsers(success: @escaping ([AppUser]) -> Void, failure: @escaping (Error) -> Void) {
+        
+        usersRef.addSnapshotListener { snapshot, error in
+            if let error = error {
+                failure(error)
+            }
+            else if let documents = snapshot?.documents {
+                var users: [AppUser] = []
+                
+                for doc in documents {
+                    do {
+                        let user = try doc.data(as: AppUser.self)
+                        users.append(user)
+                    }
+                    catch {
+                        print(#function, error)
+                    }
+                }
+                
+                self.cachedUsers = users
+                success(users)
+            }
+        }
+    }
+    
+    func fetchAllTeams(success: @escaping ([Team]) -> Void, failure: @escaping (Error) -> Void) {
+        
+        teamsRef.addSnapshotListener { snapshot, error in
+            if let error = error {
+                failure(error)
+            }
+            else if let documents = snapshot?.documents {
+                var teams: [Team] = []
+                
+                for doc in documents {
+                    do {
+                        let team = try doc.data(as: Team.self)
+                        teams.append(team)
+                    }
+                    catch {
+                        print(#function, error)
+                    }
+                }
+                
+                success(teams)
+            }
+        }
+    }
+    
+    func createTeam(name: String, imageURL: String, players: [AppUser]) async throws {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        var players = players
+        
+        var team = Team(uid: uid, name: name, imageURL: imageURL)
+        
+        let batch = Firestore.firestore().batch()
+        
+        for i in 0 ..< players.count {
+            let docRef = usersRef.document(players[i].uid)
+            
+            players[i].intTeamID = team.id
+            
+            try batch.setData(from: players[i], forDocument: docRef)
+        }
+        
+        team.playerIDs = players.map({ $0.uid })
+        
+        try batch.setData(from: team, forDocument: teamsRef.document(team.id))
+        
+        try await batch.commit()
+    }
+    
     func updateCache(user: AppUser) {
         if !self.cachedUsers.contains(where: { $0.uid == user.uid }) {
             self.cachedUsers.append(user)

@@ -21,6 +21,9 @@
 		5D8836192B999A4400E53E1D /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360B2B999A4400E53E1D /* CreateAccountView.swift */; };
 		5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */; };
 		5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88361B2B99A2DD00E53E1D /* Constants.swift */; };
+		AB3BC3CA2B9A639600084516 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AB3BC3C92B9A639600084516 /* Kingfisher */; };
+		AB3BC3CC2B9A714C00084516 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BC3CB2B9A714C00084516 /* Extension+Date.swift */; };
+		AB3BC3CE2B9A8E6000084516 /* CreateTeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3BC3CD2B9A8E6000084516 /* CreateTeamViewModel.swift */; };
 		AB74FB682B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74FB672B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift */; };
 		AB74FB6A2B9991D400E0BB2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74FB692B9991D400E0BB2B /* ContentView.swift */; };
 		AB74FB6C2B9991D500E0BB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB74FB6B2B9991D500E0BB2B /* Assets.xcassets */; };
@@ -37,12 +40,13 @@
 		ABA2D1722B99958700535C75 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ABA2D1712B99958700535C75 /* FirebaseFirestore */; };
 		ABA2D1742B99958700535C75 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABA2D1732B99958700535C75 /* FirebaseFirestoreSwift */; };
 		ABA2D1762B99958700535C75 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = ABA2D1752B99958700535C75 /* FirebaseStorage */; };
-		ABA2D19B2B99A7C200535C75 /* SelectSignUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */; };
 		ABA2D19D2B99A82E00535C75 /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */; };
 		ABA2D1A12B99B99900535C75 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA2D1A02B99B99900535C75 /* SignUpView.swift */; };
 		ABC5E05F2B99FD5300FBDE07 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */; };
 		ABE676502B9A32A200B75B27 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE6764F2B9A32A200B75B27 /* HomeViewModel.swift */; };
-		ABFEDE8E2B9A589F00254B3D /* Extension+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEDE8D2B9A589F00254B3D /* Extension+Codable.swift */; };
+		ABFEDE8E2B9A589F00254B3D /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEDE8D2B9A589F00254B3D /* Extension+Notification.swift */; };
+		ABFEDE902B9A5E7300254B3D /* EditableProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEDE8F2B9A5E7300254B3D /* EditableProfileImageView.swift */; };
+		ABFEDE932B9A626800254B3D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ABFEDE922B9A626800254B3D /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,8 @@
 		5D88360B2B999A4400E53E1D /* CreateAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTutorialView.swift; sourceTree = "<group>"; };
 		5D88361B2B99A2DD00E53E1D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AB3BC3CB2B9A714C00084516 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
+		AB3BC3CD2B9A8E6000084516 /* CreateTeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewModel.swift; sourceTree = "<group>"; };
 		AB74FB642B9991D400E0BB2B /* Cricket-Team-Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cricket-Team-Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB74FB672B9991D400E0BB2B /* Cricket_Team_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cricket_Team_ManagerApp.swift; sourceTree = "<group>"; };
 		AB74FB692B9991D400E0BB2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,12 +77,12 @@
 		ABA2D1602B99939300535C75 /* Extension+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		ABA2D1612B99939300535C75 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		ABA2D1682B99944800535C75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSignUP.swift; sourceTree = "<group>"; };
 		ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
 		ABA2D1A02B99B99900535C75 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		ABE6764F2B9A32A200B75B27 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		ABFEDE8D2B9A589F00254B3D /* Extension+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Codable.swift"; sourceTree = "<group>"; };
+		ABFEDE8D2B9A589F00254B3D /* Extension+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Notification.swift"; sourceTree = "<group>"; };
+		ABFEDE8F2B9A5E7300254B3D /* EditableProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableProfileImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 			files = (
 				ABA2D1742B99958700535C75 /* FirebaseFirestoreSwift in Frameworks */,
 				ABA2D16E2B99958700535C75 /* FirebaseDatabaseSwift in Frameworks */,
+				ABFEDE932B9A626800254B3D /* Kingfisher in Frameworks */,
 				ABA2D1722B99958700535C75 /* FirebaseFirestore in Frameworks */,
 				ABA2D16C2B99958700535C75 /* FirebaseAuth in Frameworks */,
 				ABA2D1702B99958700535C75 /* FirebaseDynamicLinks in Frameworks */,
@@ -109,6 +116,7 @@
 		5D8835F62B999A4400E53E1D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AB3BC3CD2B9A8E6000084516 /* CreateTeamViewModel.swift */,
 				5D8835F72B999A4400E53E1D /* OnboardingViewModel.swift */,
 				ABE6764F2B9A32A200B75B27 /* HomeViewModel.swift */,
 			);
@@ -148,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				5D8835FE2B999A4400E53E1D /* HomeView.swift */,
+				ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -166,6 +175,7 @@
 				5D8836052B999A4400E53E1D /* ImagePicker.swift */,
 				5D8836062B999A4400E53E1D /* AppButton.swift */,
 				5D8836072B999A4400E53E1D /* TextField.swift */,
+				ABFEDE8F2B9A5E7300254B3D /* EditableProfileImageView.swift */,
 			);
 			path = "Reuse Views";
 			sourceTree = "<group>";
@@ -177,9 +187,7 @@
 				5D8836092B999A4400E53E1D /* LoginView.swift */,
 				ABA2D1A02B99B99900535C75 /* SignUpView.swift */,
 				5D88360B2B999A4400E53E1D /* CreateAccountView.swift */,
-				ABA2D19C2B99A82E00535C75 /* CreateTeamView.swift */,
 				5D88360C2B999A4400E53E1D /* OnboardingTutorialView.swift */,
-				ABA2D19A2B99A7C200535C75 /* SelectSignUP.swift */,
 				ABC5E05E2B99FD5300FBDE07 /* ForgotPasswordView.swift */,
 			);
 			path = Onboarding;
@@ -246,7 +254,8 @@
 		ABA2D15E2B99939300535C75 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				ABFEDE8D2B9A589F00254B3D /* Extension+Codable.swift */,
+				AB3BC3CB2B9A714C00084516 /* Extension+Date.swift */,
+				ABFEDE8D2B9A589F00254B3D /* Extension+Notification.swift */,
 				ABA2D15F2B99939300535C75 /* Extension+Numbers.swift */,
 				ABA2D1602B99939300535C75 /* Extension+String.swift */,
 			);
@@ -276,6 +285,7 @@
 				ABA2D1712B99958700535C75 /* FirebaseFirestore */,
 				ABA2D1732B99958700535C75 /* FirebaseFirestoreSwift */,
 				ABA2D1752B99958700535C75 /* FirebaseStorage */,
+				ABFEDE922B9A626800254B3D /* Kingfisher */,
 			);
 			productName = "Cricket-Team-Manager";
 			productReference = AB74FB642B9991D400E0BB2B /* Cricket-Team-Manager.app */;
@@ -307,6 +317,7 @@
 			mainGroup = AB74FB5B2B9991D400E0BB2B;
 			packageReferences = (
 				ABA2D16A2B99958700535C75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				ABFEDE912B9A626800254B3D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = AB74FB652B9991D400E0BB2B /* Products */;
 			projectDirPath = "";
@@ -337,7 +348,6 @@
 			files = (
 				5D88360E2B999A4400E53E1D /* Team.swift in Sources */,
 				ABA2D19D2B99A82E00535C75 /* CreateTeamView.swift in Sources */,
-				ABA2D19B2B99A7C200535C75 /* SelectSignUP.swift in Sources */,
 				ABA2D1632B99939300535C75 /* StorageManager.swift in Sources */,
 				ABA2D1672B99939300535C75 /* Enum.swift in Sources */,
 				ABC5E05F2B99FD5300FBDE07 /* ForgotPasswordView.swift in Sources */,
@@ -345,10 +355,13 @@
 				5D88361C2B99A2DD00E53E1D /* Constants.swift in Sources */,
 				5D88360D2B999A4400E53E1D /* OnboardingViewModel.swift in Sources */,
 				5D8836132B999A4400E53E1D /* ProfileView.swift in Sources */,
-				ABFEDE8E2B9A589F00254B3D /* Extension+Codable.swift in Sources */,
+				AB3BC3CC2B9A714C00084516 /* Extension+Date.swift in Sources */,
+				AB3BC3CE2B9A8E6000084516 /* CreateTeamViewModel.swift in Sources */,
+				ABFEDE8E2B9A589F00254B3D /* Extension+Notification.swift in Sources */,
 				ABA2D1A12B99B99900535C75 /* SignUpView.swift in Sources */,
 				ABA2D1662B99939300535C75 /* Extension+String.swift in Sources */,
 				5D88361A2B999A4400E53E1D /* OnboardingTutorialView.swift in Sources */,
+				ABFEDE902B9A5E7300254B3D /* EditableProfileImageView.swift in Sources */,
 				5D8836122B999A4400E53E1D /* TabbarView.swift in Sources */,
 				5D8836192B999A4400E53E1D /* CreateAccountView.swift in Sources */,
 				ABA2D1642B99939300535C75 /* FirestoreManager.swift in Sources */,
@@ -589,9 +602,22 @@
 				minimumVersion = 10.22.0;
 			};
 		};
+		ABFEDE912B9A626800254B3D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AB3BC3C92B9A639600084516 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABFEDE912B9A626800254B3D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		ABA2D16B2B99958700535C75 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABA2D16A2B99958700535C75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -621,6 +647,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ABA2D16A2B99958700535C75 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		ABFEDE922B9A626800254B3D /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABFEDE912B9A626800254B3D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -27,7 +27,7 @@ struct SignUpView: View {
             List {
                 
                 // Image Section
-                ImageView()
+                EditableProfileImageView(selectedImage: $selectedImage, imageSize: imageSize)
                 
                 VStack(spacing: 20) {
                     
@@ -58,31 +58,6 @@ struct SignUpView: View {
             
         }
         .navigationTitle("Sign Up")
-        .sheet(isPresented: $isPresentImagePicker) {
-            ImagePicker(image: $selectedImage)
-        }
-    }
-    
-    func ImageView() -> some View {
-        Button(action: {
-            self.isPresentImagePicker.toggle()
-        }, label: {
-            if let selectedImage = selectedImage {
-                Image(uiImage: selectedImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: imageSize, height: imageSize)
-            }
-            else {
-                Image(systemName: "person.circle")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: imageSize, height: imageSize)
-            }
-        })
-        .clipShape(Circle())
-        .foregroundStyle(.accent)
-        .frame(maxWidth: .infinity)
     }
 }
 

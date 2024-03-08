@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct AppUser: Codable {
+struct AppUser: Codable, Identifiable {
+    
+    var id: String {
+        return uid
+    }
     
     var uid: String = ""
     
